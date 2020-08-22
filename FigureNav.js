@@ -39,28 +39,35 @@ $(document).ready(function () {
    * @param {Array.<String>} keys
    * @param {Number} count
    */
-  function getNavItem(array, keys, count = 0) {
+  function getNavItem(array, keys, count = 0, prev = null) {
     let label = null;
     let prevItem = null;
     let children = array;
-    array.forEach(function (val) {
-      if (count === keys.length - 2) {
-        prevItem = val.label;
-      }
 
+    if (count === keys.length - 1) {
+      prevItem = prev;
+    }
+
+    array.forEach(function (val) {
       if (val.key === keys[count]) {
         if (val.children) {
-          children = getNavItem(val.children, keys, ++count).children;
-        } else children = null;
-
-        label = val.label;
+          // const newPrev = prev.concat([val.label]);
+          const item = getNavItem(val.children, keys, ++count, val.label);
+          children = item.children;
+          label = item.label || val.label;
+          prevItem = prevItem || item.prevItem;
+        } else {
+          children = null;
+        }
       }
     });
+
+    if (keys && keys.length === 1) prevItem = "Home";
 
     return {
       label,
       children,
-      prevItem: prevItem ? prevItem : keys && keys.length > 0 ? "Home" : null,
+      prevItem,
     };
   }
 
