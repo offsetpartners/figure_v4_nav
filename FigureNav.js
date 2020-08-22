@@ -12,15 +12,56 @@ $(document).ready(function () {
     ".figure-nav-account-dropdown .dropdown-menu"
   );
 
-  const linksContainer = $(".figure-nav-links ul");
+  const linksContainer = $(".figure-nav-links .nav");
 
   // Helper Functions
   function hasActiveLink() {
     return Boolean(
       figureNavState.activeLink &&
-        Array.isArray(figureNavState) &&
-        figureNavState.length > 0
+        Array.isArray(figureNavState.activeLink) &&
+        figureNavState.activeLink.length > 0
     );
+  }
+
+  /**
+   * Creates a URL from Active Links Array
+   */
+  function createURL() {
+    if (!hasActiveLink()) return null;
+
+    return "/" + figureNavState.activeLink.join("/");
+  }
+
+  /**
+   * Recursive function that finds the current key and returns relevant
+   * data to render Nav
+   * @param {Array.<{key: String, label: String, children: []|null}>} array
+   * @param {Array.<String>} keys
+   * @param {Number} count
+   */
+  function getNavItem(array, keys, count = 0) {
+    let label = null;
+    let prevItem = null;
+    let children = array;
+    array.forEach(function (val) {
+      if (count === keys.length - 2) {
+        prevItem = val.label;
+      }
+
+      if (val.key === keys[count]) {
+        if (val.children) {
+          children = getNavItem(val.children, keys, ++count).children;
+        } else children = null;
+
+        label = val.label;
+      }
+    });
+
+    return {
+      label,
+      children,
+      prevItem: prevItem ? prevItem : keys && keys.length > 0 ? "Home" : null,
+    };
   }
 
   /**
@@ -34,8 +75,71 @@ $(document).ready(function () {
     return anchor;
   }
 
-  function createNav(array) {
+  function updateNav() {
+    const { label, children, prevItem } = getNavItem(
+      config.links,
+      figureNavState.activeLink
+    );
+
+    // If it has children then
+    // render them
+    if (children) {
+      // Render new nav
+      createNav(children, label, prevItem);
+      return;
+    }
+
+    // TODO: Actually push to URL
+    alert("URL: " + createURL());
+
+    // Reset
+    figureNavState.activeLink = [];
+    createNav(config.links);
+  }
+
+  function createPreviousButton(label) {
+    const button = $("<span></span>");
+    const arrow = $(
+      '<i class="fas fa-chevron-left" style="margin-right: 10px;"></i>'
+    );
+    button.addClass("nav-prev-button");
+    button.append(arrow);
+    button.append(label);
+
+    button.click(function () {
+      figureNavState.activeLink.pop();
+      updateNav();
+    });
+
+    return button;
+  }
+
+  function createNavLabel(label) {
+    let text;
+    if (!hasActiveLink()) {
+      text = $(`<h5><span>${label}</span></h5>`);
+    } else {
+      text = $(`<p><span>${label}</span></p>`);
+    }
+    text.addClass("nav-label");
+
+    return text;
+  }
+
+  function createNav(array, label, previousItem) {
     if (!array || !Array.isArray(array)) return;
+    // Empty Links
+    linksContainer.empty();
+    if (previousItem) {
+      const button = createPreviousButton(previousItem);
+      linksContainer.append(button);
+    }
+
+    if (label) {
+      const title = $(`<h5>${label}</h5>`);
+      title.addClass("nav-prev-header");
+      linksContainer.append(title);
+    }
 
     return array.map(function (link) {
       const { key, label } = link;
@@ -45,10 +149,6 @@ $(document).ready(function () {
       linksContainer.append(navItem);
     });
   }
-
-  // MARK: Account Chooser
-
-  accountChooserButton.text(config.company_name);
 
   /**
    * Create a Nav Item
@@ -60,14 +160,20 @@ $(document).ready(function () {
     item.addClass("nav-item");
     const link = $(`<a></a>`);
     link.addClass("nav-link");
-    const text = $(`<h5><span>${label}</span></h5>`);
-    text.addClass("nav-label");
-    item.prepend(link);
-    link.prepend(text);
+    const text = createNavLabel(label);
+    item.append(link);
+    link.append(text);
+
+    item.click(function (e) {
+      figureNavState.activeLink.push(key);
+      updateNav();
+    });
 
     return item;
   }
 
+  // MARK: Account Chooser
+  accountChooserButton.text(config.company_name);
   if (config.accounts && Array.isArray(config.accounts)) {
     config.accounts.forEach(function (account) {
       const { id, name } = account;
@@ -83,10 +189,6 @@ $(document).ready(function () {
   // MARK: Links
   if (config.links && Array.isArray(config.links)) {
     const { links } = config;
-
-    // if (hasActiveLink()) {
-    //   const { activeLink } = figureNavState;
-    // }
 
     return createNav(links);
   }

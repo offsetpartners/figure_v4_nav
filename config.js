@@ -56,7 +56,7 @@ const config = {
             },
           ],
         },
-        { key: "wine", label: "Marketing" },
+        { key: "wine", label: "Wine" },
         { key: "publishing", label: "Publishing" },
         { key: "business", label: "Business" },
         { key: "resources", label: "Resources" },

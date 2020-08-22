@@ -4,7 +4,7 @@
   --nav-bgColor: #2a2f56;
   --nav-underline-color: #ffffff;
 
-  --nav-item-animation-duration: 0.3s;
+  --nav-item-animation-duration: 0.2s;
 }
 
 .figure-nav {
@@ -38,8 +38,23 @@
   flex: 0 0 70%;
 }
 
-.figure-nav .container .figure-nav-links .nav-link {
+.figure-nav .container .figure-nav-links .nav-link,
+.figure-nav .container .figure-nav-links .nav-prev-button,
+.figure-nav .container .figure-nav-links .nav-prev-header {
   padding-left: 0.75rem;
+}
+
+.figure-nav .container .figure-nav-links .nav-prev-button {
+    cursor: pointer;
+}
+
+.figure-nav .container .figure-nav-links .nav-prev-button,
+.figure-nav .container .figure-nav-links .nav-prev-header {
+    margin-bottom: 2rem;
+}
+
+.figure-nav .container .figure-nav-links .nav-link p.nav-label {
+  margin-bottom: 0px;
 }
 
 .figure-nav .container .figure-nav-links .nav-link .nav-label span {
@@ -66,7 +81,6 @@
 
   transform: scaleX(0);
   transform-origin: right bottom;
-  transition: var(--nav-item-animation-duration) transform linear;
 }
 
 .figure-nav .container .figure-nav-links .nav-link .nav-label span:hover:after,
