@@ -11,10 +11,60 @@ $(document).ready(function () {
   const accountChooserDropdown = $(
     ".figure-nav-account-dropdown .dropdown-menu"
   );
+  /**
+   * @description Creates a Dropdown Item for Account Chooser
+   * @param {String} id
+   * @param {String} name
+   */
+  function createDropdownItem(id, name) {
+    const anchor = $(`<a href="/switch-account/${id}">${name}</a>`);
+    anchor.addClass("dropdown-item");
+    return anchor;
+  }
 
   const linksContainer = $(".figure-nav-links .nav");
+  /**
+   * @description Creates the Previous Button Component
+   * @param {String} label
+   */
+  function createPreviousButton(label) {
+    const button = $("<span></span>");
+    const arrow = $(
+      '<i class="fas fa-chevron-left" style="margin-right: 10px;"></i>'
+    );
+    button.addClass("nav-prev-button");
+    button.append(arrow);
+    button.append(label);
+
+    button.click(function () {
+      figureNavState.activeLink.pop();
+      updateNav();
+    });
+
+    return button;
+  }
+  /**
+   * @description Creates the Nav Label Component
+   * @param {String} label
+   */
+  function createNavLabel(label) {
+    let text;
+    if (!hasActiveLink()) {
+      text = $(`<h5><span>${label}</span></h5>`);
+    } else {
+      text = $(`<p><span>${label}</span></p>`);
+    }
+    text.addClass("nav-label");
+
+    return text;
+  }
 
   // Helper Functions
+
+  /**
+   * @description Checks if there are active link
+   * @returns {Bool}
+   */
   function hasActiveLink() {
     return Boolean(
       figureNavState.activeLink &&
@@ -24,7 +74,7 @@ $(document).ready(function () {
   }
 
   /**
-   * Creates a URL from Active Links Array
+   * @description Creates a URL from Active Links Array
    */
   function createURL() {
     if (!hasActiveLink()) return null;
@@ -33,13 +83,14 @@ $(document).ready(function () {
   }
 
   /**
-   * Recursive function that finds the current key and returns relevant
+   * @description Recursive function that finds the current key and returns relevant
    * data to render Nav
    * @param {Array.<{key: String, label: String, children: []|null}>} array
    * @param {Array.<String>} keys
    * @param {Number} count
+   * @returns { { label: String, children: Array<{key: String, label: String, children: Array}>, previousItem: String } }
    */
-  function getNavItem(array, keys, count = 0, prev = null) {
+  function getNavLinks(array, keys, count = 0, prev = null) {
     let label = null;
     let prevItem = null;
     let children = array;
@@ -52,7 +103,7 @@ $(document).ready(function () {
       if (val.key === keys[count]) {
         if (val.children) {
           // const newPrev = prev.concat([val.label]);
-          const item = getNavItem(val.children, keys, ++count, val.label);
+          const item = getNavLinks(val.children, keys, ++count, val.label);
           children = item.children;
           label = item.label || val.label;
           prevItem = prevItem || item.prevItem;
@@ -72,67 +123,11 @@ $(document).ready(function () {
   }
 
   /**
-   * Creates a Dropdown Item for Account Chooser
-   * @param {String} id
-   * @param {String} name
+   * @description Creates Nav Component
+   * @param {Array.<{key: String, label: String}>} array
+   * @param {String} label
+   * @param {String} previousItem
    */
-  function createDropdownItem(id, name) {
-    const anchor = $(`<a href="/switch-account/${id}">${name}</a>`);
-    anchor.addClass("dropdown-item");
-    return anchor;
-  }
-
-  function updateNav() {
-    const { label, children, prevItem } = getNavItem(
-      config.links,
-      figureNavState.activeLink
-    );
-
-    // If it has children then
-    // render them
-    if (children) {
-      // Render new nav
-      createNav(children, label, prevItem);
-      return;
-    }
-
-    // TODO: Actually push to URL
-    alert("URL: " + createURL());
-
-    // Reset
-    figureNavState.activeLink = [];
-    createNav(config.links);
-  }
-
-  function createPreviousButton(label) {
-    const button = $("<span></span>");
-    const arrow = $(
-      '<i class="fas fa-chevron-left" style="margin-right: 10px;"></i>'
-    );
-    button.addClass("nav-prev-button");
-    button.append(arrow);
-    button.append(label);
-
-    button.click(function () {
-      figureNavState.activeLink.pop();
-      updateNav();
-    });
-
-    return button;
-  }
-
-  function createNavLabel(label) {
-    let text;
-    if (!hasActiveLink()) {
-      text = $(`<h5><span>${label}</span></h5>`);
-    } else {
-      text = $(`<p><span>${label}</span></p>`);
-    }
-    text.addClass("nav-label");
-
-    return text;
-  }
-
   function createNav(array, label, previousItem) {
     if (!array || !Array.isArray(array)) return;
     // Empty Links
@@ -158,7 +153,7 @@ $(document).ready(function () {
   }
 
   /**
-   * Create a Nav Item
+   * @description Create a Nav Item Component
    * @param {String} key
    * @param {String} label
    */
@@ -177,6 +172,31 @@ $(document).ready(function () {
     });
 
     return item;
+  }
+
+  /**
+   * @description Updates the Nav depending on the local state
+   */
+  function updateNav() {
+    const { label, children, prevItem } = getNavLinks(
+      config.links,
+      figureNavState.activeLink
+    );
+
+    // If it has children then
+    // render them
+    if (children) {
+      // Render new nav
+      createNav(children, label, prevItem);
+      return;
+    }
+
+    // TODO: Actually push to URL
+    alert("URL: " + createURL());
+
+    // Reset
+    figureNavState.activeLink = [];
+    createNav(config.links);
   }
 
   // MARK: Account Chooser
