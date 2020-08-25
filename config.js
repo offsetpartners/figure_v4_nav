@@ -48,11 +48,17 @@ const config = {
               children: [
                 { key: "overview", label: "Overview" },
                 { key: "listings", label: "Listings" },
+                { key: "settings", label: "Settings" },
               ],
             },
             {
               key: "about",
               label: "About",
+              children: [
+                { key: "overview", label: "Overview" },
+                { key: "listings", label: "Listings" },
+                { key: "settings", label: "Settings" },
+              ],
             },
           ],
         },

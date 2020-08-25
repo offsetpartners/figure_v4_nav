@@ -4,6 +4,35 @@ $(document).ready(function () {
     activeLink: [],
   };
 
+  $('.btn-dashboard-search').click(e => {
+    var $this = $(e.target);
+    var $figSearchInput = $this.siblings('.figure-dashboard-search')
+    var $figSearchButton = $this
+    if($figSearchInput.hasClass('d-none')) {
+      $figSearchInput.removeClass('d-none');
+    }
+    if(!$figSearchButton.hasClass('d-none')) {
+      $figSearchButton.addClass('d-none');
+    }
+    $figSearchInput.focus();
+  // }, e => {
+  //   console.log(e);
+  })
+
+  // $('.figure-dashboard-search').focusout(e => {
+  //   console.log(e.target)
+  //   var $this = $(e.target);
+  //   var $figSearchButton = $this.siblings('.btn-dashboard-search')
+  //   var $figSearchInput = $this
+  //   if(!$figSearchInput.hasClass('d-none')) {
+  //     $figSearchInput.addClass('d-none');
+  //   }
+  //   if($figSearchButton.hasClass('d-none')) {
+  //     $figSearchButton.removeClass('d-none');
+  //   }
+  // })
+  
+
   // Components
   const dropdownDivider = $('<div class="dropdown-divider"></div>');
 
@@ -30,7 +59,7 @@ $(document).ready(function () {
   function createPreviousButton(label) {
     const button = $("<span></span>");
     const arrow = $(
-      '<i class="fas fa-chevron-left" style="margin-right: 10px;"></i>'
+      '<i class="fas fa-chevron-left nav-previous-arrow"></i>'
     );
     button.addClass("nav-prev-button");
     button.append(arrow);

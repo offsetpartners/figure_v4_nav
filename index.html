@@ -25,42 +25,57 @@
   </head>
 
   <body>
-    <nav class="figure-nav nav flex-column">
-      <div class="container">
-        <div class="row figure-nav-account">
-          <!-- Dropdown -->
-          <div class="col">
-            <div class="dropdown figure-nav-account-dropdown">
-              <button
+    <header class="d-flex flex-row">
+      <nav class="figure-nav nav flex-column">
+        <div class="left-nav-container container">
+          <div class="row figure-nav-account">
+            <!-- Dropdown -->
+            <div class="col">
+              <div class="dropdown figure-nav-account-dropdown">
+                <button
                 type="button"
                 aria-haspopup="true"
                 aria-expanded="false"
                 data-toggle="dropdown"
                 id="figure-nav-account-chooser"
                 class="btn btn-secondary dropdown-toggle"
-              ></button>
-
-              <div
+                ></button>
+                
+                <div
                 class="dropdown-menu"
                 aria-labelledby="figure-nav-account-chooser"
-              ></div>
+                ></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row figure-nav-links">
+            <div class="col">
+              <ul class="nav flex-column"></ul>
+            </div>
+          </div>
+          
+          <div class="row figure-nav-footer">
+            <div class="col">
+              Footer
             </div>
           </div>
         </div>
-
-        <div class="row figure-nav-links">
-          <div class="col">
-            <ul class="nav flex-column"></ul>
-          </div>
+      </nav>
+      <nav class="figure-top-nav top-nav d-flex flex-row">
+        <div class="search-bar">
+          <button type="button" class="btn btn-dashboard-search">
+            <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-search mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+              <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+            </svg>
+            <span class="btn-dashboard-search-text">Search...</span>
+          </button>
+          <input type="text" class="figure-dashboard-search d-none">
         </div>
-
-        <div class="row figure-nav-footer">
-          <div class="col">
-            Footer
-          </div>
-        </div>
-      </div>
-    </nav>
+        
+      </nav>
+    </header>
     <!-- Config -->
     <script src="config.js"></script>
 

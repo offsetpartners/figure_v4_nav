@@ -1,10 +1,16 @@
 /* CSS Variables */
 :root {
+  --body-bgColor: #2a2f56;
   --nav-color: #ffffff;
+  --nav-search-btn-color: #ffffff9a;
+  --nav-search-bgColor: rgba(255, 255, 255, 0.1);
   --nav-bgColor: #2a2f56;
   --nav-underline-color: #ffffff;
 
   --nav-item-animation-duration: 0.2s;
+}
+body {
+  background-color: var(--nav-bgColor);
 }
 
 .figure-nav {
@@ -12,10 +18,10 @@
   height: 100%;
   max-width: 200px;
   color: var(--nav-color);
-  background-color: var(--nav-bgColor);
+  /* background-color: var(--nav-bgColor); */
 }
 
-.figure-nav .container {
+.figure-nav .left-nav-container {
   display: flex;
   height: 100vh;
   padding-top: 16px;
@@ -46,6 +52,10 @@
 
 .figure-nav .container .figure-nav-links .nav-prev-button {
     cursor: pointer;
+}
+
+.figure-nav .container .figure-nav-links .nav-prev-button .nav-previous-arrow {
+  margin-right: 10px;
 }
 
 .figure-nav .container .figure-nav-links .nav-prev-button,
@@ -93,4 +103,51 @@
   transform: scaleX(1);
   transform-origin: left bottom;
   transition: var(--nav-item-animation-duration) transform linear;
+}
+
+.figure-top-nav {
+  max-height: 70px;
+  color: var(--nav-color);
+  /* background-color: var(--nav-bgColor); */
+  width: 100%;
+}
+
+.figure-top-nav .search-bar {
+  padding: 16px 0px;
+  max-width: 500px;
+  width: 100%;
+  color: var(--nav-color);
+  /* background-color: var(--nav-bgColor); */
+  /* max-height: 34px; */
+  /* height: 100%; */
+}
+.figure-top-nav .search-bar {
+  padding: 16px 0px;
+  max-width: 500px;
+  width: 100%;
+  color: var(--nav-color);
+  /* background-color: var(--nav-bgColor); */
+  /* max-height: 34px; */
+  /* height: 100%; */
+}
+
+.figure-top-nav .search-bar .btn-dashboard-search {
+  background: var(--nav-search-bgColor);
+  padding: 8px 12px;
+  max-height: 34px;
+  height: 100%;
+  width: 100%;
+  text-align: left;
+  color: var(--nav-search-btn-color);
+  align-items: center;
+  position: relative;
+}
+
+
+.figure-top-nav .search-bar .btn-dashboard-search-text {
+  display: inline-flex;
+  align-self: center;
+  position: absolute;
+  top: 15%;
+  margin: auto;
 }
