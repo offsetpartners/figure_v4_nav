@@ -33,32 +33,30 @@
             <div class="col">
               <div class="dropdown figure-nav-account-dropdown">
                 <button
-                type="button"
-                aria-haspopup="true"
-                aria-expanded="false"
-                data-toggle="dropdown"
-                id="figure-nav-account-chooser"
-                class="btn btn-secondary dropdown-toggle"
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  data-toggle="dropdown"
+                  id="figure-nav-account-chooser"
+                  class="btn btn-secondary dropdown-toggle"
                 ></button>
-                
+
                 <div
-                class="dropdown-menu"
-                aria-labelledby="figure-nav-account-chooser"
+                  class="dropdown-menu"
+                  aria-labelledby="figure-nav-account-chooser"
                 ></div>
               </div>
             </div>
           </div>
-          
+
           <div class="row figure-nav-links">
             <div class="col">
               <ul class="nav flex-column"></ul>
             </div>
           </div>
-          
+
           <div class="row figure-nav-footer">
-            <div class="col">
-              Footer
-            </div>
+            <div class="col">Footer</div>
           </div>
         </div>
       </nav>
@@ -66,12 +64,29 @@
         <div class="col-md-7">
           <div class="figure-dashboard-search">
             <div class="search-icon">
-              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-                <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+              <svg
+                width="1em"
+                height="1em"
+                viewBox="0 0 16 16"
+                class="bi bi-search"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
+                />
               </svg>
             </div>
-            <input type="text" class="form-control dashboard-search-bar" placeholder="Search...">
+            <input
+              type="text"
+              class="form-control dashboard-search-bar"
+              placeholder="Search..."
+            />
             <table id="dashboard-search-table"></table>
           </div>
         </div>
@@ -81,8 +96,8 @@
 
             </div>
             <div class="figure-nav-account-details">-->
-              <!-- Modal -->
-              <!-- <a
+            <!-- Modal -->
+            <!-- <a
                 type="button"
                 aria-haspopup="true"
                 aria-expanded="false"
@@ -95,9 +110,6 @@
         </div>
       </nav>
     </header>
-    <!-- Config -->
-    <script src="config.js"></script>
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
@@ -115,6 +127,17 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+
+    <!-- FigureNav Constants -->
+    <script text="text/javascript">
+      const FigureNav = {};
+    </script>
+    <script src="FigureNav.State.js"></script>
+    <script src="FigureNav.Helpers.js"></script>
+    <script src="FigureNav.Components.js"></script>
+
+    <!-- Config -->
+    <script src="config.js"></script>
 
     <script src="FigureNav.js"></script>
   </body>
