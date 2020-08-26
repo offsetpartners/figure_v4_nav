@@ -133,6 +133,11 @@ body {
   color: var(--nav-search-btn-color);
   cursor: pointer;
 }
+.figure-top-nav 
+  .figure-dashboard-search 
+  .search-icon.dark-icon {
+  color: var(--nav-bgColor);
+}
 
 .figure-top-nav 
   .figure-dashboard-search 
@@ -142,6 +147,12 @@ body {
   padding: 6px 6px 6px 38px;
   width: 100%;
   text-align: left;
+}
+.figure-top-nav 
+  .figure-dashboard-search 
+  .dashboard-search-bar:focus {
+  background: var(--nav-color);
+  color: var(--nav-bgColor);
 }
 
 .figure-top-nav 

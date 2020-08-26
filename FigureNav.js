@@ -13,6 +13,7 @@ $(document).ready(function () {
   );
 
   const searchBar = $(".dashboard-search-bar");
+  const searchBarIcon = $(".figure-dashboard-search .search-icon");
   const searchTable = $("#dashboard-search-table");
 
   /**
@@ -250,16 +251,24 @@ $(document).ready(function () {
   $(window).click(function () {
     if (searchTable.is(":visible")) searchTable.hide();
   });
-
+  
   // MARK: Search Bar
-  searchBar.click(function (e) {
-    searchTable.show()
-    searchBar.focus();
-
-    // Stop propogation to allow for Click Away
-    // Listener to activate
-    e.stopPropagation();
+  const searchInit = [searchBar, searchBarIcon];
+  searchInit.forEach(function (init) {
+    init.click(function (e) {
+      searchTable.show()
+      searchBar.focus();
+      searchBarIcon.toggleClass('dark-icon');
+      // Stop propogation to allow for Click Away
+      // Listener to activate
+      e.stopPropagation();
+    });
   });
+  searchBar.focusout(function () {
+    searchBarIcon.toggleClass('dark-icon');
+  // }, function () {
+  //   searchBarIcon.toggleClass('dark-icon');
+  })
 
   // TODO: Use some data attribute to pull down results or
   // use fetch to display
