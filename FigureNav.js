@@ -11,6 +11,10 @@ $(document).ready(function () {
   const accountChooserDropdown = $(
     ".figure-nav-account-dropdown .dropdown-menu"
   );
+
+  const searchBar = $(".dashboard-search-bar");
+  const searchTable = $("#dashboard-search-table");
+
   /**
    * @description Creates a Dropdown Item for Account Chooser
    * @param {String} id
@@ -29,9 +33,7 @@ $(document).ready(function () {
    */
   function createPreviousButton(label) {
     const button = $("<span></span>");
-    const arrow = $(
-      '<i class="fas fa-chevron-left" style="margin-right: 10px;"></i>'
-    );
+    const arrow = $('<i class="fas fa-chevron-left nav-previous-arrow"></i>');
     button.addClass("nav-prev-button");
     button.append(arrow);
     button.append(label);
@@ -198,6 +200,72 @@ $(document).ready(function () {
     figureNavState.activeLink = [];
     createNav(config.links);
   }
+
+  /**
+   * @description Creates Table View to display Search Results
+   * @param {String} input
+   * @param {Array} searchData
+   */
+  function createSearchResults(input, searchData) {
+    const tableLength = searchData.length > 10 ? 10 : searchData.length;
+    searchTable.empty();
+
+    if (input.length <= 0) return;
+
+    const data = [];
+    for (i = 0; i < tableLength; i++) {
+      data.push(searchData[i]);
+    }
+
+    data.forEach(function (tableData) {
+      const row = createTableRow(tableData.key, tableData.label);
+      searchTable.append(row);
+    });
+  }
+
+  /**
+   * @description Creates Search Bar Table Row Component
+   * @param {String} key
+   * @param {String} label
+   */
+  function createTableRow(key, label) {
+    const tr = $("<tr></tr>");
+    tr.addClass("dashboard-search-table-row");
+
+    const td = $("<td></td>");
+    td.addClass("dashboard-search-table-data");
+
+    const anchor = $(`<a>${label}</a>`);
+    anchor.attr("href", key);
+    anchor.attr("target", "_blank");
+
+    td.append(anchor);
+    tr.append(td);
+    return tr;
+  }
+
+  /**
+   * Click Away Listener
+   */
+  $(window).click(function () {
+    if (searchTable.is(":visible")) searchTable.hide();
+  });
+
+  // MARK: Search Bar
+  searchBar.click(function (e) {
+    searchTable.show()
+    searchBar.focus();
+
+    // Stop propogation to allow for Click Away
+    // Listener to activate
+    e.stopPropagation();
+  });
+
+  // TODO: Use some data attribute to pull down results or
+  // use fetch to display
+  searchBar.on("change keydown paste input", (e) => {
+    createSearchResults(e.target.value, config.search);
+  });
 
   // MARK: Account Chooser
   accountChooserButton.text(config.company_name);

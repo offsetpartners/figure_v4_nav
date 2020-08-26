@@ -48,11 +48,17 @@ const config = {
               children: [
                 { key: "overview", label: "Overview" },
                 { key: "listings", label: "Listings" },
+                { key: "settings", label: "Settings" },
               ],
             },
             {
               key: "about",
               label: "About",
+              children: [
+                { key: "overview", label: "Overview" },
+                { key: "listings", label: "Listings" },
+                { key: "settings", label: "Settings" },
+              ],
             },
           ],
         },
@@ -63,5 +69,11 @@ const config = {
         { key: "locator", label: "Locator" },
       ],
     },
+  ],
+  search: [
+    { key: "results.com", label: "Results" },
+    { key: "are.com", label: "Are" },
+    { key: "generated.com", label: "Generated" },
+    { key: "here.com", label: "Here" },
   ],
 };
