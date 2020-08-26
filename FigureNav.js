@@ -4,86 +4,6 @@ $(document).ready(function () {
     activeLink: [],
   };
 
-  // Activates Search Bar
-  var searchStarters = ['.btn-dashboard-search', '.search-icon'];
-  searchStarters.forEach(search => {
-    $(search).click(e => {
-      console.log(e)
-      var $this = $(e.target).closest('.figure-dashboard-search').find('.btn-dashboard-search');
-      var $figSearchInput = $this.closest('.figure-dashboard-search').find('.dashboard-search-bar');
-      var $figSearchTable = $this.closest('.figure-dashboard-search').find('#dashboard-search-table');
-      var $figSearchButton = $this;
-      if($figSearchInput.hasClass('d-none')) {
-        $figSearchInput.removeClass('d-none');
-      }
-      if($figSearchTable.hasClass('d-none')) {
-        $figSearchTable.removeClass('d-none');
-      }
-      if(!$figSearchButton.hasClass('d-none')) {
-        $figSearchButton.addClass('d-none');
-      }
-      $figSearchInput.focus();
-    })
-  })
-  // Deactivates Search Bar
-  $('.dashboard-search-bar').focusout(e => {
-    var text = $(e.target).val();
-    if(text == ""){
-      text = "Search...";
-    }
-    var $searchButton = $(e.target).siblings('.btn-dashboard-search');
-    var $searchTable = $(e.target).siblings('#dashboard-search-table');
-    $searchButton.text(text);
-    if($(e.target.nextElementSibling).closest('table').attr('id') == 'dashboard-search-table') {
-      console.log('stay')
-    } else {
-      console.log($(e.target.nextElementSibling))
-      if(!$(e.target).hasClass('d-none')){
-        $(e.target).addClass('d-none');
-      }
-      if($searchButton.hasClass('d-none')){
-        $searchButton.removeClass('d-none');
-      }
-      if(!$searchTable.hasClass('d-none')){
-        $searchTable.addClass('d-none');
-      }
-    }
-  })
-
-  function createSearchResults(input, searchData) {
-    var tableLength;
-    if(searchData.length > 10) {
-      tableLength = 10;
-    } else {
-      tableLength = searchData.length;
-    }
-    var data = [];
-    data.length = tableLength;
-    if(input.length > 0){
-      for(i = 0; i < tableLength; i++) {
-        data[i] = searchData[i];
-      }
-    }
-    $('#dashboard-search-table').empty();
-    data.forEach(tableData => {
-      const searchTableRow = $(`
-      <tr class="dashboard-search-table-row">
-        <td class="dashboard-search-table-data">
-          <a target="_blank" href="${tableData.key}">${tableData.label}</a>
-        </td>
-      </tr>`);
-      $('#dashboard-search-table').append(searchTableRow);
-    })
-  }
-  $('.dashboard-search-bar').on('change keydown paste input', e => {
-    console.log('hit')
-    createSearchResults($(e.target).val(), config.search)
-  })
-  $('.dashboard-search-table-data').click(e => {
-    var link = $(e.target).find('a').attr('href');
-    window.open(link);
-  })
-
   // Components
   const dropdownDivider = $('<div class="dropdown-divider"></div>');
 
@@ -91,6 +11,10 @@ $(document).ready(function () {
   const accountChooserDropdown = $(
     ".figure-nav-account-dropdown .dropdown-menu"
   );
+
+  const searchBar = $(".dashboard-search-bar");
+  const searchTable = $("#dashboard-search-table");
+
   /**
    * @description Creates a Dropdown Item for Account Chooser
    * @param {String} id
@@ -109,9 +33,7 @@ $(document).ready(function () {
    */
   function createPreviousButton(label) {
     const button = $("<span></span>");
-    const arrow = $(
-      '<i class="fas fa-chevron-left nav-previous-arrow"></i>'
-    );
+    const arrow = $('<i class="fas fa-chevron-left nav-previous-arrow"></i>');
     button.addClass("nav-prev-button");
     button.append(arrow);
     button.append(label);
@@ -279,6 +201,72 @@ $(document).ready(function () {
     createNav(config.links);
   }
 
+  /**
+   * @description Creates Table View to display Search Results
+   * @param {String} input
+   * @param {Array} searchData
+   */
+  function createSearchResults(input, searchData) {
+    const tableLength = searchData.length > 10 ? 10 : searchData.length;
+    searchTable.empty();
+
+    if (input.length <= 0) return;
+
+    const data = [];
+    for (i = 0; i < tableLength; i++) {
+      data.push(searchData[i]);
+    }
+
+    data.forEach(function (tableData) {
+      const row = createTableRow(tableData.key, tableData.label);
+      searchTable.append(row);
+    });
+  }
+
+  /**
+   * @description Creates Search Bar Table Row Component
+   * @param {String} key
+   * @param {String} label
+   */
+  function createTableRow(key, label) {
+    const tr = $("<tr></tr>");
+    tr.addClass("dashboard-search-table-row");
+
+    const td = $("<td></td>");
+    td.addClass("dashboard-search-table-data");
+
+    const anchor = $(`<a>${label}</a>`);
+    anchor.attr("href", key);
+    anchor.attr("target", "_blank");
+
+    td.append(anchor);
+    tr.append(td);
+    return tr;
+  }
+
+  /**
+   * Click Away Listener
+   */
+  $(window).click(function () {
+    if (searchTable.is(":visible")) searchTable.hide();
+  });
+
+  // MARK: Search Bar
+  searchBar.click(function (e) {
+    searchTable.show()
+    searchBar.focus();
+
+    // Stop propogation to allow for Click Away
+    // Listener to activate
+    e.stopPropagation();
+  });
+
+  // TODO: Use some data attribute to pull down results or
+  // use fetch to display
+  searchBar.on("change keydown paste input", (e) => {
+    createSearchResults(e.target.value, config.search);
+  });
+
   // MARK: Account Chooser
   accountChooserButton.text(config.company_name);
   if (config.accounts && Array.isArray(config.accounts)) {
@@ -299,6 +287,4 @@ $(document).ready(function () {
 
     return createNav(links);
   }
-
-  
 });
