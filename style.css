@@ -134,17 +134,6 @@ body {
   cursor: pointer;
 }
 
-/* Button that leads to text input */
-.figure-top-nav 
-  .figure-dashboard-search 
-  .btn-dashboard-search {
-  background: var(--nav-search-btn-bgColor);
-  color: var(--nav-search-btn-color);
-  padding: 6px 6px 6px 38px;
-  width: 100%;
-  text-align: left;
-}
-
 .figure-top-nav 
   .figure-dashboard-search 
   .dashboard-search-bar {
