@@ -4,34 +4,85 @@ $(document).ready(function () {
     activeLink: [],
   };
 
-  $('.btn-dashboard-search').click(e => {
-    var $this = $(e.target);
-    var $figSearchInput = $this.siblings('.figure-dashboard-search')
-    var $figSearchButton = $this
-    if($figSearchInput.hasClass('d-none')) {
-      $figSearchInput.removeClass('d-none');
+  // Activates Search Bar
+  var searchStarters = ['.btn-dashboard-search', '.search-icon'];
+  searchStarters.forEach(search => {
+    $(search).click(e => {
+      console.log(e)
+      var $this = $(e.target).closest('.figure-dashboard-search').find('.btn-dashboard-search');
+      var $figSearchInput = $this.closest('.figure-dashboard-search').find('.dashboard-search-bar');
+      var $figSearchTable = $this.closest('.figure-dashboard-search').find('#dashboard-search-table');
+      var $figSearchButton = $this;
+      if($figSearchInput.hasClass('d-none')) {
+        $figSearchInput.removeClass('d-none');
+      }
+      if($figSearchTable.hasClass('d-none')) {
+        $figSearchTable.removeClass('d-none');
+      }
+      if(!$figSearchButton.hasClass('d-none')) {
+        $figSearchButton.addClass('d-none');
+      }
+      $figSearchInput.focus();
+    })
+  })
+  // Deactivates Search Bar
+  $('.dashboard-search-bar').focusout(e => {
+    var text = $(e.target).val();
+    if(text == ""){
+      text = "Search...";
     }
-    if(!$figSearchButton.hasClass('d-none')) {
-      $figSearchButton.addClass('d-none');
+    var $searchButton = $(e.target).siblings('.btn-dashboard-search');
+    var $searchTable = $(e.target).siblings('#dashboard-search-table');
+    $searchButton.text(text);
+    if($(e.target.nextElementSibling).closest('table').attr('id') == 'dashboard-search-table') {
+      console.log('stay')
+    } else {
+      console.log($(e.target.nextElementSibling))
+      if(!$(e.target).hasClass('d-none')){
+        $(e.target).addClass('d-none');
+      }
+      if($searchButton.hasClass('d-none')){
+        $searchButton.removeClass('d-none');
+      }
+      if(!$searchTable.hasClass('d-none')){
+        $searchTable.addClass('d-none');
+      }
     }
-    $figSearchInput.focus();
-  // }, e => {
-  //   console.log(e);
   })
 
-  // $('.figure-dashboard-search').focusout(e => {
-  //   console.log(e.target)
-  //   var $this = $(e.target);
-  //   var $figSearchButton = $this.siblings('.btn-dashboard-search')
-  //   var $figSearchInput = $this
-  //   if(!$figSearchInput.hasClass('d-none')) {
-  //     $figSearchInput.addClass('d-none');
-  //   }
-  //   if($figSearchButton.hasClass('d-none')) {
-  //     $figSearchButton.removeClass('d-none');
-  //   }
-  // })
-  
+  function createSearchResults(input, searchData) {
+    var tableLength;
+    if(searchData.length > 10) {
+      tableLength = 10;
+    } else {
+      tableLength = searchData.length;
+    }
+    var data = [];
+    data.length = tableLength;
+    if(input.length > 0){
+      for(i = 0; i < tableLength; i++) {
+        data[i] = searchData[i];
+      }
+    }
+    $('#dashboard-search-table').empty();
+    data.forEach(tableData => {
+      const searchTableRow = $(`
+      <tr class="dashboard-search-table-row">
+        <td class="dashboard-search-table-data">
+          <a target="_blank" href="${tableData.key}">${tableData.label}</a>
+        </td>
+      </tr>`);
+      $('#dashboard-search-table').append(searchTableRow);
+    })
+  }
+  $('.dashboard-search-bar').on('change keydown paste input', e => {
+    console.log('hit')
+    createSearchResults($(e.target).val(), config.search)
+  })
+  $('.dashboard-search-table-data').click(e => {
+    var link = $(e.target).find('a').attr('href');
+    window.open(link);
+  })
 
   // Components
   const dropdownDivider = $('<div class="dropdown-divider"></div>');
@@ -248,4 +299,6 @@ $(document).ready(function () {
 
     return createNav(links);
   }
+
+  
 });
