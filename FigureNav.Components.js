@@ -122,6 +122,6 @@ FigureNav.Components = {
       td.append(anchor);
       tr.append(td);
       return tr;
-    },
+    }
   },
 };

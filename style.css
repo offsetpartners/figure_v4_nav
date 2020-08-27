@@ -159,7 +159,7 @@ body {
   .figure-dashboard-search 
   #dashboard-search-table {
   background: var(--nav-search-table-bgColor);
-  width: 99.9%;
+  width: 99.8%;
   position: absolute;
   top: 50px;
   left: 1px;
