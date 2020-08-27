@@ -12,6 +12,7 @@
   --nav-search-bar-bgColor: rgba(255, 255, 255, 0.25);
   --nav-search-list-bgColor: rgba(255, 255, 255, 0.99);
   --nav-search-list-hover-bgColor: rgba(200, 200, 200, 0.35);
+  --nav-search-drop-bgColor: #F6F6FB;
 }
 body {
   width: 100vw;
@@ -144,16 +145,21 @@ body {
   color: var(--nav-search-btn-color);
   background: var(--nav-search-bar-bgColor);
 }
+.figure-top-nav .figure-dashboard-search .dashboard-search-bar.active {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
 .figure-top-nav .figure-dashboard-search .dashboard-search-bar:focus {
   color: var(--nav-bgColor);
   background: var(--nav-color);
+  box-shadow: none;
 }
 
 .figure-top-nav .figure-dashboard-search #dashboard-search-list {
-  top: 50px;
+  top: 52px;
   left: 0px;
   width: 100%;
-  padding: 16px 0px;
+  padding: 0;
   overflow: hidden;
   position: absolute;
   border-bottom-left-radius: 4px;
@@ -167,11 +173,24 @@ body {
   .dashboard-search-list-item {
   padding-bottom: 5px;
 }
+.figure-top-nav
+  .figure-dashboard-search
+  #dashboard-search-list
+  .dashboard-search-list-item.advanced-search {
+  padding-bottom: 0;
+}
+.figure-top-nav
+  .figure-dashboard-search
+  #dashboard-search-list
+  .dashboard-search-list-item.advanced-search a {
+  color: #FF7358;
+  background:#F6F6FB;
+  border-top:1px solid #E6E6EB;
+}
 .figure-top-nav .figure-dashboard-search #dashboard-search-list a {
   width: 100%;
   display: block;
-  padding-left: 38px;
-  padding-bottom: 5px;
+  padding: 5px 0 5px 12px;
   text-decoration: none;
   color: var(--body-bgColor);
   background: var(--nav-search-list-bgColor);
