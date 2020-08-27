@@ -7,23 +7,33 @@ $(document).ready(function () {
    * Click Away Listener
    */
   $(window).click(function () {
-    if (Search.Table.is(":visible")) Search.Table.hide();
+    if (Search.List.is(":visible")) Search.List.hide();
   });
 
   // MARK: Search Bar
   Search.Bar.click(function (e) {
-    Search.Table.show();
-    Search.Bar.focus();
-
+    Search.List.show();
     // Stop propogation to allow for Click Away
     // Listener to activate
     e.stopPropagation();
   });
-
+  Search.Icon.click(function (e) {
+    Search.List.show();
+    if (!Search.Icon.hasClass("dark-icon")) Search.Icon.addClass("dark-icon");
+    // Stop propogation to allow for Click Away
+    // Listener to activate
+    e.stopPropagation();
+  });
   // TODO: Use some data attribute to pull down results or
   // use fetch to display
   Search.Bar.on("change keydown paste input", (e) => {
     renderSearchResult(e.target.value, config.search);
+  });
+  Search.Bar.mousedown(function () {
+    if (!Search.Bar.is(":focus")) Search.Icon.addClass("dark-icon");
+  });
+  Search.Bar.focusout(function () {
+    Search.Icon.removeClass("dark-icon");
   });
 
   // MARK: Account Chooser

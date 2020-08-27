@@ -1,18 +1,21 @@
 /* CSS Variables */
 :root {
   --body-bgColor: #2a2f56;
+  
   --nav-color: #ffffff;
+  --nav-bgColor: #2a2f56;
+  --nav-underline-color: #ffffff;
+  --nav-item-animation-duration: 0.2s;
+
   --nav-search-btn-color: #ffffff9a;
   --nav-search-btn-bgColor: rgba(255, 255, 255, 0.1);
   --nav-search-bar-bgColor: rgba(255, 255, 255, 0.25);
-  --nav-search-table-bgColor: rgba(255, 255, 255, 0.99);
-  --nav-search-table-hover-bgColor: rgba(200, 200, 200, .35);
-  --nav-bgColor: #2a2f56;
-  --nav-underline-color: #ffffff;
-
-  --nav-item-animation-duration: 0.2s;
+  --nav-search-list-bgColor: rgba(255, 255, 255, 0.99);
+  --nav-search-list-hover-bgColor: rgba(200, 200, 200, 0.35);
 }
 body {
+  width: 100vw;
+  overflow-x: hidden;
   background-color: var(--nav-bgColor);
 }
 
@@ -54,7 +57,7 @@ body {
 }
 
 .figure-nav .container .figure-nav-links .nav-prev-button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .figure-nav .container .figure-nav-links .nav-prev-button .nav-previous-arrow {
@@ -63,7 +66,7 @@ body {
 
 .figure-nav .container .figure-nav-links .nav-prev-button,
 .figure-nav .container .figure-nav-links .nav-prev-header {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 .figure-nav .container .figure-nav-links .nav-link p.nav-label {
@@ -109,77 +112,70 @@ body {
 }
 
 .figure-top-nav {
+  width: 100%;
   max-height: 70px;
   color: var(--nav-color);
-  /* background-color: var(--nav-bgColor); */
-  width: 100%;
 }
 
-.figure-top-nav 
-  .figure-dashboard-search {
-  padding: 16px 0px;
+.figure-top-nav .figure-dashboard-search {
   width: 100%;
-  color: var(--nav-color);
+  padding: 16px 0px;
   position: relative;
+  color: var(--nav-color);
 }
 
 /* Icon absolute on button and text input */
-.figure-top-nav 
-  .figure-dashboard-search 
-  .search-icon {
+.figure-top-nav .figure-dashboard-search .search-icon {
   position: absolute;
   top: 25px;
   left: 12px;
   color: var(--nav-search-btn-color);
   cursor: pointer;
 }
+.figure-top-nav .figure-dashboard-search .search-icon.dark-icon {
+  color: var(--nav-bgColor);
+}
 
-.figure-top-nav 
-  .figure-dashboard-search 
-  .dashboard-search-bar {
-  background: var(--nav-search-bar-bgColor);
-  color: var(--nav-search-btn-color);
-  padding: 6px 6px 6px 38px;
+.figure-top-nav .figure-dashboard-search .dashboard-search-bar {
   width: 100%;
   text-align: left;
+  padding: 6px 6px 6px 38px;
+  border: 0px solid transparent;
+  color: var(--nav-search-btn-color);
+  background: var(--nav-search-bar-bgColor);
+}
+.figure-top-nav .figure-dashboard-search .dashboard-search-bar:focus {
+  color: var(--nav-bgColor);
+  background: var(--nav-color);
 }
 
-.figure-top-nav 
-  .figure-dashboard-search 
-  #dashboard-search-table {
-  background: var(--nav-search-table-bgColor);
-  width: 100%;
-  position: absolute;
+.figure-top-nav .figure-dashboard-search #dashboard-search-list {
   top: 50px;
-  border-bottom-right-radius: 4px;
+  left: 0px;
+  width: 100%;
+  padding: 16px 0px;
+  overflow: hidden;
+  position: absolute;
   border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  background: var(--nav-search-list-bgColor);
 }
 
-.figure-top-nav 
-  .figure-dashboard-search 
-  #dashboard-search-table 
-  .dashboard-search-table-row {
+.figure-top-nav
+  .figure-dashboard-search
+  #dashboard-search-list
+  .dashboard-search-list-item {
   padding-bottom: 5px;
 }
-.figure-top-nav 
-  .figure-dashboard-search 
-  #dashboard-search-table 
-  .dashboard-search-table-data {
-  background: var(--nav-search-table-bgColor);
+.figure-top-nav .figure-dashboard-search #dashboard-search-list a {
+  width: 100%;
+  display: block;
   padding-left: 38px;
   padding-bottom: 5px;
-}
-.figure-top-nav 
-  .figure-dashboard-search 
-  #dashboard-search-table 
-  .dashboard-search-table-data
-  a {
-  width: 100%;
+  text-decoration: none;
   color: var(--body-bgColor);
+  background: var(--nav-search-list-bgColor);
 }
-.figure-top-nav 
-  .figure-dashboard-search 
-  #dashboard-search-table 
-  .dashboard-search-table-data:hover {
-  background: var(--nav-search-table-hover-bgColor);
+.figure-top-nav .figure-dashboard-search #dashboard-search-list a:hover {
+  background: var(--nav-search-list-hover-bgColor);
 }

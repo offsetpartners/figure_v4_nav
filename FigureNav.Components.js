@@ -101,26 +101,23 @@ FigureNav.Components = {
   },
 
   Search: {
+    Icon: $(".figure-dashboard-search .search-icon"),
     Bar: $(".dashboard-search-bar"),
-    Table: $("#dashboard-search-table"),
+    List: $("#dashboard-search-list"),
     /**
      * @param {String} key
      * @param {String} label
      */
-    TableRow: function (key, label) {
-      const tr = $("<tr></tr>");
-      tr.addClass("dashboard-search-table-row");
-
-      const td = $("<td></td>");
-      td.addClass("dashboard-search-table-data");
+    ListItem: function (key, label) {
+      const li = $("<li></li>");
+      li.addClass("dashboard-search-list-item");
 
       const anchor = $(`<a>${label}</a>`);
       anchor.attr("href", key);
       anchor.attr("target", "_blank");
 
-      td.append(anchor);
-      tr.append(td);
-      return tr;
-    },
+      li.append(anchor);
+      return li;
+    }
   },
 };
