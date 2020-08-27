@@ -92,8 +92,14 @@ FigureNav.Helpers = {
   renderSearchResult: function (input, searchData) {
     const tableLength = searchData.length > 10 ? 10 : searchData.length;
     FigureNav.Components.Search.List.empty();
-
-    if (input.length <= 0) return;
+    const SearchEnd = FigureNav.Components.Search.AdvancedSearch();
+    SearchEnd.addClass('advanced-search');
+    // console.log(SearchEnd)
+    
+    if (input.length <= 0) {
+      FigureNav.Components.Search.List.append(SearchEnd);
+      return;
+    }
 
     const data = [];
     for (i = 0; i < tableLength; i++) {
@@ -107,5 +113,7 @@ FigureNav.Helpers = {
       );
       FigureNav.Components.Search.List.append(row);
     });
+    
+    FigureNav.Components.Search.List.append(SearchEnd);
   },
 };

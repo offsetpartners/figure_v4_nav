@@ -107,17 +107,22 @@ FigureNav.Components = {
     /**
      * @param {String} key
      * @param {String} label
+     * @param {String} class
      */
     ListItem: function (key, label) {
       const li = $("<li></li>");
       li.addClass("dashboard-search-list-item");
-
+      
       const anchor = $(`<a>${label}</a>`);
       anchor.attr("href", key);
       anchor.attr("target", "_blank");
-
+      
       li.append(anchor);
       return li;
-    }
+    },
+    AdvancedSearch: function() {
+      const listEnd = this.ListItem("#", "Advanced Search")
+      return listEnd;
+    },
   },
 };

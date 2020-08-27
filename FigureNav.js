@@ -8,18 +8,22 @@ $(document).ready(function () {
    */
   $(window).click(function () {
     if (Search.List.is(":visible")) Search.List.hide();
+    if (Search.Bar.hasClass('active')) Search.Bar.removeClass('active');
   });
 
   // MARK: Search Bar
   Search.Bar.click(function (e) {
     Search.List.show();
+    if (!Search.Bar.hasClass('active')) Search.Bar.addClass('active');
     // Stop propogation to allow for Click Away
     // Listener to activate
     e.stopPropagation();
   });
   Search.Icon.click(function (e) {
     Search.List.show();
+    if (!Search.Bar.is(":focus")) Search.Bar.focus();
     if (!Search.Icon.hasClass("dark-icon")) Search.Icon.addClass("dark-icon");
+    if(!Search.Bar.hasClass('active')) Search.Bar.addClass('active');
     // Stop propogation to allow for Click Away
     // Listener to activate
     e.stopPropagation();
