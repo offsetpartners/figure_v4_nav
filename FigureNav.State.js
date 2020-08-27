@@ -1,0 +1,3 @@
+FigureNav.State = {
+  activeLink: [],
+};
