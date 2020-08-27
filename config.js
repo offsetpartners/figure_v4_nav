@@ -71,6 +71,7 @@ const config = {
     },
   ],
   search: [
+    
     { key: "results.com", label: "Results" },
     { key: "are.com", label: "Are" },
     { key: "generated.com", label: "Generated" },
