@@ -43,7 +43,7 @@ const config = {
           label: "Marketing",
           children: [
             {
-              key: "homepage",
+              key: "content_homepage",
               label: "Homepage",
               children: [
                 { key: "overview", label: "Overview" },
@@ -52,7 +52,7 @@ const config = {
               ],
             },
             {
-              key: "about",
+              key: "content_about",
               label: "About",
               children: [
                 { key: "overview", label: "Overview" },
@@ -65,7 +65,52 @@ const config = {
         { key: "wine", label: "Wine" },
         { key: "publishing", label: "Publishing" },
         { key: "business", label: "Business" },
-        { key: "resources", label: "Resources" },
+        { 
+          key: "resources", 
+          label: "Resources",
+          children: [
+            {
+              key: "content_trade",
+              label: "Trade",
+              children: [
+                { key: "overview", label: "Overview" },
+                { key: "listings", label: "Listings" },
+                { key: "settings", label: "Settings" },
+              ],
+              tags: ["trade"],
+            }, 
+            {
+              key: "resources_bottleshots",
+              label: "Bottle Shots",
+              children: [
+                { key: "overview", label: "Overview" },
+                { key: "listings", label: "Listings" },
+                { key: "settings", label: "Settings" },
+              ],
+              tags: ["trade", "bottleshots", "photos"],
+            },
+            {
+              key: "resources_product_sheets",
+              label: "Product Sheets",
+              children: [
+                { key: "overview", label: "Overview" },
+                { key: "listings", label: "Listings" },
+                { key: "settings", label: "Settings" },
+              ],
+              tags: ["trade"],
+            },
+            {
+              key: "resources_gallery_images",
+              label: "Gallery Images",
+              children: [
+                { key: "overview", label: "Overview" },
+                { key: "listings", label: "Listings" },
+                { key: "settings", label: "Settings" },
+              ],
+              tags: ["trade", "photos"],
+            },
+          ],
+        },
         { key: "locator", label: "Locator" },
       ],
     },
