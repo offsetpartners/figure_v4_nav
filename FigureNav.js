@@ -11,33 +11,46 @@ $(document).ready(function () {
    */
   $(window).click(function () {
     if (Search.Table.is(":visible")) Search.Table.hide();
-    // Search.Bar.outerHeight(searchBarHeight);
   });
 
   // MARK: Search Bar
   Search.Bar.click(function (e) {
     Search.Table.show();
-    Search.Bar.focus();
+    if(!Search.Bar.is(':focus')){
+      Search.Bar.focus();
+    }
 
+    // If table gets re-initialized, resize search input bar
     searchHeightComparison();
     // Stop propogation to allow for Click Away
     // Listener to activate
     e.stopPropagation();
   });
+  Search.Icon.click(function (e) {
+    Search.Table.show();
+    if(!Search.Bar.is(':focus')) Search.Bar.focus();
+    if(!Search.Icon.hasClass('dark-icon')) Search.Icon.addClass('dark-icon');
+    
+    // If table gets re-initialized, resize search input bar
+    searchHeightComparison();
+    // Stop propogation to allow for Click Away
+    // Listener to activate
+    e.stopPropagation();
+  })
   // TODO: Use some data attribute to pull down results or
   // use fetch to display
   Search.Bar.on("change keydown paste input", (e) => {
     renderSearchResult(e.target.value, config.search);
+    // If table gets initialized, resize search input bar
     searchHeightComparison();
   });
   Search.Bar.mousedown(function () {
-    if(Search.Bar.is(':focus')) return;
-    Search.Icon.addClass('dark-icon');
+    if(!Search.Bar.is(':focus')) Search.Icon.addClass('dark-icon');
   })
   Search.Bar.focusout(function () {
     Search.Icon.removeClass('dark-icon');
+    // If table gets hidden, reset size of search input bar
     if (Search.Table.is(":visible")) searchHeightReset();
-    // Search.Bar.outerHeight(searchBarHeight);
   })
   const searchHeightComparison = function () {
     const newTableHeight = Search.Table.height();
