@@ -248,7 +248,7 @@ body {
 }
 .account-details-links {
   padding-right: 25px;
-  border-right: 1px solid var(--nav-links-color);
+  /* border-right: 1px solid var(--nav-links-color); */
   align-self: center
 }
 .account-details-links .dashboard-notifications {
@@ -287,11 +287,19 @@ body {
   transition: color .4s ease-in-out;
   text-decoration: none;
 }
-#figure-nav-profile-details-chooser {
+#figure-nav-profile-details-name {
   font-size: 14px;
+  align-self: center;
+}
+#figure-nav-profile-details-icon {
+  display: flex;
+  align-self: center;
+  padding: 0 12px 0 0;
 }
 .figure-nav-profile-dropdown {
   padding-left: 10px;
+  display: inline-flex;
+  border-left: 1px solid var(--nav-links-color);
 }
 
 
