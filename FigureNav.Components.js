@@ -114,23 +114,33 @@ FigureNav.Components = {
   },
 
   Search: {
+    Package: $(".figure-dashboard-search"),
     Icon: $(".figure-dashboard-search .search-icon"),
     Bar: $(".dashboard-search-bar"),
     List: $("#dashboard-search-list"),
+    Backdrop: $(".search-backdrop"),
     /**
      * @param {String} key
      * @param {String} label
+     * @param {String} class
      */
     ListItem: function (key, label) {
       const li = $("<li></li>");
       li.addClass("dashboard-search-list-item");
-
+      
       const anchor = $(`<a>${label}</a>`);
       anchor.attr("href", key);
       anchor.attr("target", "_blank");
-
+      
       li.append(anchor);
       return li;
+    },
+    // ListSubItem: function (key, label) {
+
+    // },
+    AdvancedSearch: function() {
+      const listEnd = this.ListItem("#", "Advanced Search")
+      return listEnd;
     },
   },
 };
