@@ -20,18 +20,22 @@ FigureNav.Helpers = {
   },
   /**
    * @description Updates the Nav depending on the local state
+   * @param {("forward"|"backward")} direction
    */
-  updateSidebar: function () {
+  updateSidebar: function (direction = "forward") {
     const { label, children, prevItem } = this.getSideBarData(
       config.links,
       FigureNav.State.activeLink
     );
 
+    const Component = FigureNav.Components.SideBar.Container;
     // If it has children then
     // render them
     if (children) {
-      // Render new nav
-      FigureNav.Components.SideBar.Body(children, label, prevItem);
+      FigureNav.Animations.sharedX(Component, direction, function () {
+        // Render new nav
+        FigureNav.Components.SideBar.Body(children, label, prevItem);
+      });
       return;
     }
 
