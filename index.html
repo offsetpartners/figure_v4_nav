@@ -20,6 +20,12 @@
       crossorigin="anonymous"
     ></script>
 
+    <!-- Google Font CDN -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="style.css" />
     <title>Figure v4 Nav</title>
   </head>
@@ -39,7 +45,21 @@
                   data-toggle="dropdown"
                   id="figure-nav-account-chooser"
                   class="btn btn-secondary dropdown-toggle"
-                ></button>
+                >
+                  <svg
+                    width="15px"
+                    height="15px"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="bi bi-chevron-down"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+                    />
+                  </svg>
+                </button>
 
                 <div
                   class="dropdown-menu"
@@ -60,7 +80,7 @@
           </div>
         </div>
       </nav>
-      <nav class="figure-top-nav top-nav d-flex flex-row row">
+      <nav class="figure-top-nav top-nav d-flex flex-row">
         <div class="col-md-7">
           <div class="figure-dashboard-search">
             <div class="search-icon">
@@ -119,6 +139,7 @@
     </script>
     <script src="FigureNav.State.js"></script>
     <script src="FigureNav.Helpers.js"></script>
+    <script src="FigureNav.Animations.js"></script>
     <script src="FigureNav.Components.js"></script>
 
     <!-- Config -->
