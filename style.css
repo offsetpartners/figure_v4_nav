@@ -1,6 +1,7 @@
 /* CSS Variables */
 :root {
   --body-bgColor: #2a2f56;
+  --modal-bgColor: #2a2f56bd;
   
   --nav-color: #ffffff;
   --nav-bgColor: #2a2f56;
@@ -148,7 +149,28 @@ body {
 .figure-top-nav .figure-dashboard-search .dashboard-search-bar.active {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+  z-index: 1301;
 }
+.figure-top-nav .figure-dashboard-search.active,
+.figure-top-nav .figure-dashboard-search .search-icon.active,
+.figure-top-nav .figure-dashboard-search #dashboard-search-list.active {
+  z-index: 1301;
+}
+
+.search-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.search-backdrop.active {
+  background: var(--modal-bgColor);
+  z-index: 1200;
+}
+
 .figure-top-nav .figure-dashboard-search .dashboard-search-bar:focus {
   color: var(--nav-bgColor);
   background: var(--nav-color);
@@ -204,3 +226,4 @@ body {
 .figure-top-nav .figure-dashboard-search #dashboard-search-list a:hover {
   background: var(--nav-search-list-hover-bgColor);
 }
+.
