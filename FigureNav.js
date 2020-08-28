@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  const { Helpers, Components } = FigureNav;
+  const { Helpers, Components, Animations } = FigureNav;
 
   const { renderSearchResult } = Helpers;
   const { Search, SideBar, AccountChooser, DropdownDivider } = Components;
@@ -37,18 +37,24 @@ $(document).ready(function () {
   });
 
   // MARK: Account Chooser
-  AccountChooser.Button.text(config.company_name);
+  AccountChooser.Button.prepend(config.company_name);
   if (config.accounts && Array.isArray(config.accounts)) {
     config.accounts.forEach(function (account) {
       const { id, name } = account;
       const dropdownItem = AccountChooser.DropdownItem(id, name);
 
-      AccountChooser.Dropdown.append(dropdownItem);
+      AccountChooser.DropdownMenu.append(dropdownItem);
     });
-
-    // Add Divider after every Item except the last one
-    $("a.dropdown-item:not(:last-child)").after(DropdownDivider);
   }
+
+  // Handle Droddown interactions
+  AccountChooser.Dropdown.on("show.bs.dropdown", function (e) {
+    Animations.containerTransform(AccountChooser.DropdownMenu);
+  });
+
+  AccountChooser.Dropdown.on("hide.bs.dropdown", function (e) {
+    Animations.containerTransform(AccountChooser.DropdownMenu, true);
+  });
 
   // MARK: Links
   if (config.links && Array.isArray(config.links)) {
