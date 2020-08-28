@@ -164,11 +164,14 @@ body {
   width: 100%;
   height: 100%;
   z-index: -1;
+  background-color: transparent;
+  transition: background-color .5s ease-in-out, z-index .5s ease-in-out;
 }
 
 .search-backdrop.active {
-  background: var(--modal-bgColor);
+  background-color: var(--modal-bgColor);
   z-index: 1200;
+  transition: background-color .5s ease-in-out, z-index .5s ease-in-out;
 }
 
 .figure-top-nav .figure-dashboard-search .dashboard-search-bar:focus {
