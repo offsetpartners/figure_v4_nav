@@ -120,6 +120,9 @@ FigureNav.Components = {
       li.append(anchor);
       return li;
     },
+    // ListSubItem: function (key, label) {
+
+    // },
     AdvancedSearch: function() {
       const listEnd = this.ListItem("#", "Advanced Search")
       return listEnd;

@@ -117,9 +117,9 @@ const config = {
   ],
   search: [
     
-    { key: "results.com", label: "Results" },
-    { key: "are.com", label: "Are" },
-    { key: "generated.com", label: "Generated" },
-    { key: "here.com", label: "Here" },
+    { key: "results", label: "Results" },
+    { key: "are", label: "Are" },
+    { key: "generated", label: "Generated" },
+    { key: "here", label: "Here" },
   ],
 };

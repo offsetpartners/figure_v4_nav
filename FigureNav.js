@@ -31,7 +31,7 @@ $(document).ready(function () {
   // TODO: Use some data attribute to pull down results or
   // use fetch to display
   Search.Bar.on("change keydown paste input", (e) => {
-    renderSearchResult(e.target.value, config.search);
+    renderSearchResult(e.target.value, config);
   });
   Search.Bar.mousedown(function () {
     if (!Search.Bar.is(":focus")) Search.Icon.addClass("dark-icon");

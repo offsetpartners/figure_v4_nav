@@ -176,6 +176,12 @@ body {
 .figure-top-nav
   .figure-dashboard-search
   #dashboard-search-list
+  .dashboard-search-list-item:first-of-type {
+  border-top: 1px solid #E6E6EB;
+}
+.figure-top-nav
+  .figure-dashboard-search
+  #dashboard-search-list
   .dashboard-search-list-item.advanced-search {
   padding-bottom: 0;
 }
@@ -185,7 +191,7 @@ body {
   .dashboard-search-list-item.advanced-search a {
   color: #FF7358;
   background:#F6F6FB;
-  border-top:1px solid #E6E6EB;
+  border-top: 1px solid #E6E6EB;
 }
 .figure-top-nav .figure-dashboard-search #dashboard-search-list a {
   width: 100%;
