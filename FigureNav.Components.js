@@ -3,7 +3,8 @@ FigureNav.Components = {
 
   AccountChooser: {
     Button: $("#figure-nav-account-chooser"),
-    Dropdown: $(".figure-nav-account-dropdown .dropdown-menu"),
+    Dropdown: $(".figure-nav-account-dropdown"),
+    DropdownMenu: $(".figure-nav-account-dropdown .dropdown-menu"),
     /**
      * @param {String} id
      * @param {String} name
@@ -22,14 +23,19 @@ FigureNav.Components = {
      */
     PreviousButton: function (label) {
       const button = $("<span></span>");
-      const arrow = $('<i class="fas fa-chevron-left nav-previous-arrow"></i>');
+      const arrow = $(
+        '<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/> </svg>'
+      );
+      arrow.addClass("nav-previous-arrow ");
       button.addClass("nav-prev-button");
+      button.addClass("d-flex");
+      button.addClass("align-items-center");
       button.append(arrow);
       button.append(label);
 
       button.click(function () {
         FigureNav.State.activeLink.pop();
-        FigureNav.Helpers.updateSidebar();
+        FigureNav.Helpers.updateSidebar("backward");
       });
 
       return button;
@@ -37,14 +43,15 @@ FigureNav.Components = {
     /**
      * @param {String} label
      */
-    Header: function (label) {
+    Label: function (label) {
       let text;
       if (!FigureNav.Helpers.hasActiveLink()) {
-        text = $(`<h5><span>${label}</span></h5>`);
+        text = $("<h5></h5>");
       } else {
-        text = $(`<p><span>${label}</span></p>`);
+        text = $("<p></p>");
       }
       text.addClass("nav-label");
+      text.append(`<span>${label}</span>`);
 
       return text;
     },
@@ -55,6 +62,12 @@ FigureNav.Components = {
      */
     Body: function (array, label, previousItem) {
       if (!array || !Array.isArray(array)) return;
+      if (FigureNav.Helpers.hasActiveLink()) {
+        this.Container.css({ marginTop: "22px" });
+      } else {
+        this.Container.css({ marginTop: "92px" });
+      }
+
       // Empty Links
       this.Container.empty();
       if (previousItem) {
@@ -87,13 +100,13 @@ FigureNav.Components = {
       item.addClass("nav-item");
       const link = $(`<a></a>`);
       link.addClass("nav-link");
-      const text = this.Header(label);
+      const text = this.Label(label);
       item.append(link);
       link.append(text);
 
-      item.click(function (e) {
+      link.click(function (e) {
         FigureNav.State.activeLink.push(key);
-        FigureNav.Helpers.updateSidebar();
+        FigureNav.Helpers.updateSidebar("forward");
       });
 
       return item;
@@ -118,6 +131,6 @@ FigureNav.Components = {
 
       li.append(anchor);
       return li;
-    }
+    },
   },
 };
