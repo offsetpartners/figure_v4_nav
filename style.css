@@ -244,8 +244,12 @@ body {
 
 .account-details {
   align-self: center;
+  display: inline-flex;
+}
+.account-details-links {
   padding-right: 25px;
   border-right: 1px solid var(--nav-links-color);
+  align-self: center
 }
 .account-details-links .dashboard-notifications {
   position: relative;
@@ -275,6 +279,7 @@ body {
   color: var(--nav-links-color);
   transition: color .4s ease-in-out;
   margin-left: 20px;
+  font-size: 16px;;
 }
 
 .account-details-links a:hover {
@@ -282,4 +287,11 @@ body {
   transition: color .4s ease-in-out;
   text-decoration: none;
 }
+#figure-nav-profile-details-chooser {
+  font-size: 14px;
+}
+.figure-nav-profile-dropdown {
+  padding-left: 10px;
+}
+
 
