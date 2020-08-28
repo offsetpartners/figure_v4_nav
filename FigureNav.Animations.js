@@ -11,7 +11,7 @@ FigureNav.Animations = {
   ) {
     let firstLeft, secondLeft;
     const allyOpts = {
-      duration: 230,
+      duration: 120,
       easing: "swing",
     };
     switch (direction) {

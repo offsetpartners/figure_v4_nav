@@ -1,6 +1,4 @@
 FigureNav.Components = {
-  DropdownDivider: $('<div class="dropdown-divider"></div>'),
-
   AccountChooser: {
     Button: $("#figure-nav-account-chooser"),
     Dropdown: $(".figure-nav-account-dropdown"),
@@ -127,19 +125,19 @@ FigureNav.Components = {
     ListItem: function (key, label) {
       const li = $("<li></li>");
       li.addClass("dashboard-search-list-item");
-      
+
       const anchor = $(`<a>${label}</a>`);
       anchor.attr("href", key);
       anchor.attr("target", "_blank");
-      
+
       li.append(anchor);
       return li;
     },
     // ListSubItem: function (key, label) {
 
     // },
-    AdvancedSearch: function() {
-      const listEnd = this.ListItem("#", "Advanced Search")
+    AdvancedSearch: function () {
+      const listEnd = this.ListItem("#", "Advanced Search");
       return listEnd;
     },
   },

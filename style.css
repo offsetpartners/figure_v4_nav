@@ -57,6 +57,7 @@ body {
 .figure-nav .dropdown-menu {
   padding: 0;
   overflow: hidden;
+  transform: unset !important;
 }
 
 .figure-nav .dropdown-menu .dropdown-item:not(:last-child) {
@@ -223,6 +224,10 @@ body {
   padding: 16px 0px;
   position: relative;
   color: var(--nav-color);
+}
+
+.figure-top-nav .figure-dashboard-search .active {
+  transition: 0.4s linear background-color;
 }
 
 /* Icon absolute on button and text input */
