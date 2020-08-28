@@ -101,9 +101,11 @@ FigureNav.Components = {
   },
 
   Search: {
+    Package: $(".figure-dashboard-search"),
     Icon: $(".figure-dashboard-search .search-icon"),
     Bar: $(".dashboard-search-bar"),
     List: $("#dashboard-search-list"),
+    Backdrop: $(".search-backdrop"),
     /**
      * @param {String} key
      * @param {String} label

@@ -1,9 +1,11 @@
 /* CSS Variables */
 :root {
   --body-bgColor: #2a2f56;
+  --modal-bgColor: #2a2f56bd;
   
   --nav-color: #ffffff;
   --nav-bgColor: #2a2f56;
+  --nav-links-color: #C0C3DD;
   --nav-underline-color: #ffffff;
   --nav-item-animation-duration: 0.2s;
 
@@ -148,7 +150,34 @@ body {
 .figure-top-nav .figure-dashboard-search .dashboard-search-bar.active {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+  z-index: 1301;
 }
+.figure-top-nav .figure-dashboard-search #dashboard-search-list.active {
+  display: block;
+  z-index: 1301;
+}
+.figure-top-nav .figure-dashboard-search.active,
+.figure-top-nav .figure-dashboard-search .search-icon.active {
+  z-index: 1301;
+}
+
+.search-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: transparent;
+  transition: background-color .4s ease-in-out, z-index .4s ease-in-out;
+}
+
+.search-backdrop.active {
+  background-color: var(--modal-bgColor);
+  z-index: 1200;
+  transition: background-color .4s ease-in-out, z-index .4s ease-in-out;
+}
+
 .figure-top-nav .figure-dashboard-search .dashboard-search-bar:focus {
   color: var(--nav-bgColor);
   background: var(--nav-color);
@@ -156,6 +185,7 @@ body {
 }
 
 .figure-top-nav .figure-dashboard-search #dashboard-search-list {
+  display: none;
   top: 52px;
   left: 0px;
   width: 100%;
@@ -204,3 +234,64 @@ body {
 .figure-top-nav .figure-dashboard-search #dashboard-search-list a:hover {
   background: var(--nav-search-list-hover-bgColor);
 }
+
+.griddy {
+  display: grid;
+}
+.to-the-right {
+  justify-content: end;
+}
+
+.account-details {
+  align-self: center;
+  display: inline-flex;
+}
+.account-details-links {
+  padding-right: 25px;
+  border-right: 1px solid var(--nav-links-color);
+  align-self: center
+}
+.account-details-links .dashboard-notifications {
+  position: relative;
+  align-items: center;
+  width: 20px;
+}
+.account-details-links .dashboard-notifications-icon {
+  height: 22px;
+  width: 22px;
+  margin-bottom: -6px;
+}
+.account-details-links .dashboard-notifications-icon path {
+  stroke: var(--nav-links-color);
+  transition: stroke .4s ease-in-out;
+}
+.account-details-links .dashboard-notifications-icon:hover path {
+  stroke: var(--nav-color);
+  transition: stroke .4s ease-in-out;
+}
+.account-details-links .dashboard-notifications-icon-alert {
+  position: absolute;
+  top: 3px;
+  right: 1px;
+}
+
+.account-details-links a {
+  color: var(--nav-links-color);
+  transition: color .4s ease-in-out;
+  margin-left: 20px;
+  font-size: 16px;;
+}
+
+.account-details-links a:hover {
+  color: var(--nav-color);
+  transition: color .4s ease-in-out;
+  text-decoration: none;
+}
+#figure-nav-profile-details-chooser {
+  font-size: 14px;
+}
+.figure-nav-profile-dropdown {
+  padding-left: 10px;
+}
+
+
