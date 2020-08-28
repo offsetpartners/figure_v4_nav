@@ -1,11 +1,14 @@
 /* CSS Variables */
 :root {
   --body-bgColor: #2a2f56;
-  
+
   --nav-color: #ffffff;
   --nav-bgColor: #2a2f56;
   --nav-underline-color: #ffffff;
   --nav-item-animation-duration: 0.2s;
+
+  --nav-dropdown-border-color: #dee2e6;
+  --nav-dropdown-active-bgColor: #ff7358;
 
   --nav-search-btn-color: #ffffff9a;
   --nav-search-btn-bgColor: rgba(255, 255, 255, 0.1);
@@ -13,6 +16,11 @@
   --nav-search-list-bgColor: rgba(255, 255, 255, 0.99);
   --nav-search-list-hover-bgColor: rgba(200, 200, 200, 0.35);
 }
+
+* {
+  font-family: "Inter", sans-serif !important;
+}
+
 body {
   width: 100vw;
   overflow-x: hidden;
@@ -36,18 +44,49 @@ body {
 }
 
 /* Account Chooser */
-.figure-nav .container .figure-nav-account {
-  flex: 0 0 15%;
-}
-
 .figure-nav #figure-nav-account-chooser {
+  display: flex;
+  align-items: center;
   border-color: transparent;
   background-color: transparent;
 }
 
+.figure-nav .dropdown-menu {
+  padding: 0;
+  overflow: hidden;
+}
+
+.figure-nav .dropdown-menu .dropdown-item:not(:last-child) {
+  color: var(--nav-bgColor);
+  transition: 0.27s linear all;
+  border-bottom: 1px solid var(--nav-dropdown-border-color);
+}
+
+.figure-nav .dropdown-menu .dropdown-item {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.figure-nav .dropdown-menu .dropdown-item:hover {
+  background-color: var(--nav-dropdown-active-bgColor);
+}
+
+.figure-nav #figure-nav-account-chooser svg {
+  margin-left: 5px;
+}
+
+.figure-nav #figure-nav-account-chooser:after {
+  display: none;
+}
+
+.figure-nav-account-dropdown button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 /* Links */
-.figure-nav .container .figure-nav-links {
-  flex: 0 0 70%;
+.figure-nav .figure-nav-footer {
+  margin-top: auto;
 }
 
 .figure-nav .container .figure-nav-links .nav-link,
@@ -56,32 +95,85 @@ body {
   padding-left: 0.75rem;
 }
 
-.figure-nav .container .figure-nav-links .nav-prev-button {
-  cursor: pointer;
+.figure-nav .container .figure-nav-links .nav-prev-header {
+  display: block;
+  margin-top: 48px;
+  position: relative;
+  margin-bottom: 52px;
+
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 18px;
+  font-style: normal;
+  letter-spacing: -0.01em;
 }
 
-.figure-nav .container .figure-nav-links .nav-prev-button .nav-previous-arrow {
-  margin-right: 10px;
+.figure-nav .container .figure-nav-links .nav-prev-button {
+  opacity: 0.7;
+  cursor: pointer;
+  font-weight: 500;
+  line-height: 26px;
+  font-size: 12.8px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.figure-nav .container .figure-nav-links .nav-link h5.nav-label {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 26px;
+  font-style: normal;
+  letter-spacing: -0.01em;
+}
+
+.figure-nav .container .figure-nav-links .nav-link p.nav-label {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 26px;
+  font-style: normal;
+  letter-spacing: -0.01em;
 }
 
 .figure-nav .container .figure-nav-links .nav-prev-button,
-.figure-nav .container .figure-nav-links .nav-prev-header {
-  margin-bottom: 2rem;
+.nav-previous-arrow {
+  cursor: pointer;
+  margin-right: 10px;
+  transition: var(--nav-item-animation-duration) linear all;
+}
+
+.figure-nav
+  .container
+  .figure-nav-links
+  .nav-prev-button:hover
+  .nav-previous-arrow {
+  transform: translateX(-2px);
+}
+
+.figure-nav .container .figure-nav-links .nav-prev-button:hover {
+  opacity: 1;
+}
+
+.figure-nav .container .figure-nav-links .nav-link .nav-label {
+  opacity: 0.7;
+  cursor: pointer;
 }
 
 .figure-nav .container .figure-nav-links .nav-link p.nav-label {
   margin-bottom: 0px;
 }
 
-.figure-nav .container .figure-nav-links .nav-link .nav-label span {
-  opacity: 0.7;
+.figure-nav .container .figure-nav-links .nav-item {
   cursor: pointer;
-  padding-bottom: 5px;
   position: relative;
+}
+
+.figure-nav .container .figure-nav-links .nav-link .nav-label span {
+  position: relative;
+  padding-bottom: 5px;
   transition: var(--nav-item-animation-duration) opacity linear;
 }
 
-.figure-nav .container .figure-nav-links .nav-link .nav-label span:hover {
+.figure-nav .container .figure-nav-links .nav-item:hover .nav-link .nav-label {
   opacity: 1;
 }
 
@@ -99,7 +191,13 @@ body {
   transform-origin: right bottom;
 }
 
-.figure-nav .container .figure-nav-links .nav-link .nav-label span:hover:after,
+.figure-nav
+  .container
+  .figure-nav-links
+  .nav-item:hover
+  .nav-link
+  .nav-label
+  span:after,
 .figure-nav
   .container
   .figure-nav-links
