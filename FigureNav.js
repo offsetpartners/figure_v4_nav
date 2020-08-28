@@ -54,7 +54,7 @@ $(document).ready(function () {
   Search.Bar.on("change keydown paste input", (e) => {
     renderSearchResult(e.target.value, config);
     if(e.keyCode == 27) {
-      console.log(e.keyCode);
+      // console.log(e.keyCode);
       if (Search.List.is(":visible")) Search.List.hide();
       if (Search.Bar.hasClass('active')) {
         Search.Package.removeClass('active');
