@@ -18,6 +18,7 @@
   --nav-search-list-bgColor: rgba(255, 255, 255, 0.99);
   --nav-search-list-hover-bgColor: rgba(200, 200, 200, 0.35);
   --nav-search-drop-bgColor: #F6F6FB;
+  --nav-transition-time: .4s;
 }
 
 * {
@@ -227,7 +228,7 @@ body {
 }
 
 .figure-top-nav .figure-dashboard-search .active {
-  transition: 0.4s linear background-color;
+  transition: var(--nav-transition-time) linear background-color;
 }
 
 /* Icon absolute on button and text input */
@@ -272,13 +273,13 @@ body {
   height: 100%;
   z-index: -1;
   background-color: transparent;
-  transition: background-color .4s ease-in-out, z-index .4s ease-in-out;
+  transition: background-color var(--nav-transition-time) ease-in-out, z-index var(--nav-transition-time) ease-in-out;
 }
 
 .search-backdrop.active {
   background-color: var(--modal-bgColor);
   z-index: 1200;
-  transition: background-color .4s ease-in-out, z-index .4s ease-in-out;
+  transition: background-color var(--nav-transition-time) ease-in-out, z-index var(--nav-transition-time) ease-in-out;
 }
 
 .figure-top-nav .figure-dashboard-search .dashboard-search-bar:focus {
@@ -338,21 +339,21 @@ body {
   background: var(--nav-search-list-hover-bgColor);
 }
 
-.griddy {
-  display: grid;
-}
-.to-the-right {
+.right-of-search {
+  display: inline-flex;
   justify-content: end;
 }
 
 .account-details {
   align-self: center;
   display: inline-flex;
+
 }
 .account-details-links {
   padding-right: 25px;
   /* border-right: 1px solid var(--nav-links-color); */
-  align-self: center
+  align-self: center;
+  text-align: right;
 }
 .account-details-links .dashboard-notifications {
   position: relative;
@@ -366,33 +367,40 @@ body {
 }
 .account-details-links .dashboard-notifications-icon path {
   stroke: var(--nav-links-color);
-  transition: stroke .4s ease-in-out;
+  transition: stroke var(--nav-transition-time) ease-in-out;
 }
 .account-details-links .dashboard-notifications-icon:hover path {
   stroke: var(--nav-color);
-  transition: stroke .4s ease-in-out;
+  transition: stroke var(--nav-transition-time) ease-in-out;
 }
 .account-details-links .dashboard-notifications-icon-alert {
   position: absolute;
   top: 3px;
   right: 1px;
 }
-
+.dashboard-notifications {
+  margin-left: 20px;
+}
 .account-details-links a {
   color: var(--nav-links-color);
-  transition: color .4s ease-in-out;
-  margin-left: 20px;
+  transition: color var(--nav-transition-time) ease-in-out;
   font-size: 16px;;
 }
 
 .account-details-links a:hover {
   color: var(--nav-color);
-  transition: color .4s ease-in-out;
+  transition: color var(--nav-transition-time) ease-in-out;
   text-decoration: none;
 }
 #figure-nav-profile-details-name {
   font-size: 14px;
   align-self: center;
+  color: var(--nav-links-color);
+  transition: color var(--nav-transition-time) ease-in-out;
+}
+.figure-nav-profile-dropdown:hover #figure-nav-profile-details-name {
+  color: var(--nav-color);
+  transition: color var(--nav-transition-time) ease-in-out;
 }
 #figure-nav-profile-details-icon {
   display: flex;

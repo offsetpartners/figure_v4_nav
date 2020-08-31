@@ -55,11 +55,15 @@ $(document).ready(function () {
   });
   // TODO: Use some data attribute to pull down results or
   // use fetch to display
-  Search.Bar.on("change", (e) => {
+  Search.Bar.on("keydown input change value", (e) => {
     renderSearchResult(e.target.value, config);
+    // Pushing esc key:
     if (e.keyCode == 27) {
       // console.log(e.keyCode);
-      if (Search.List.is(":visible")) Search.List.hide();
+      // if (Search.List.is(":visible")) Search.List.hide();
+      if (Search.List.is(":visible")) {
+        Search.List.slideUp(SEARCH_DURATION);
+      }
       if (Search.Bar.hasClass("active")) {
         Search.Package.removeClass("active");
         Search.Icon.removeClass("active");
