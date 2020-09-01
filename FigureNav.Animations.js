@@ -48,6 +48,10 @@ FigureNav.Animations = {
         allyOpts
       );
   },
+  /**
+   * @param {jQuery} Component 
+   * @param {Boolean} shouldHide 
+   */
   containerTransform: function (Component, shouldHide) {
     const scale = shouldHide ? 0 : 1;
     const opacity = shouldHide ? "hide" : "show";

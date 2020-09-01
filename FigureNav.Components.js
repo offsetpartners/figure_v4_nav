@@ -54,7 +54,7 @@ FigureNav.Components = {
       return text;
     },
     /**
-     * @param {Array.<{key: String, label: String}> array
+     * @param {Array.<{key: String, label: String}>} array
      * @param {String} label
      * @param {String} previousItem
      */
@@ -133,12 +133,42 @@ FigureNav.Components = {
       li.append(anchor);
       return li;
     },
-    // ListSubItem: function (key, label) {
-
-    // },
     AdvancedSearch: function () {
       const listEnd = this.ListItem("#", "Advanced Search");
       return listEnd;
     },
   },
+  Notifications: {
+    Button: $("#figure-nav-notifications-list"),
+    Icon: $(".dashboard-notifications-icon"),
+    Alert: $(".dashboard-notifications-icon-alert"),
+    Dropdown: $(".figure-nav-notifications-dropdown"),
+    DropdownMenu: $(".figure-nav-notifications-dropdown .dropdown-menu"),
+    DropdownMenuList: $(".figure-nav-notifications-dropdown .dropdown-menu .figure-nav-notifications-list"),
+    /**
+     * @param {String} id
+     * @param {String} name
+     */
+    DropdownItem: function (id, name, date) {
+      const inline = $(`<div></div>`);
+      inline.addClass("notification-inline");
+      var n = Date.now();
+      var day = 86400000;
+      let infoConAlert = "";
+      // if notification is less than 5 days old, 
+      // icon is figure orange. 
+      ((n - Date.parse(date)) > (day * 5)) ? infoConAlert = "" : infoConAlert = "info-con-path";
+      const infoCon = 
+      `<svg class="info-con ml-2" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="${infoConAlert}" d="M8.00002 15.3333C12.0501 15.3333 15.3334 12.05 15.3334 7.99996C15.3334 3.94987 12.0501 0.666626 8.00002 0.666626C3.94993 0.666626 0.666687 3.94987 0.666687 7.99996C0.666687 12.05 3.94993 15.3333 8.00002 15.3333Z" stroke="#4F5268" stroke-miterlimit="10" stroke-linecap="square"/>
+        <path class="${infoConAlert}" d="M7.99994 8V11.5" stroke="#4F5268" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path class="${infoConAlert}" d="M7.99994 5L7.99994 6" stroke="#4F5268" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`;
+      const anchor = $(`<div class="" id="${id}">${name}<p class="notification-date">${date}</p></div>`);
+      anchor.addClass("dropdown-item");
+      // console.log(n - Date.parse(date))
+      inline.append(infoCon).append(anchor);
+      return inline;
+    },
+  }
 };
