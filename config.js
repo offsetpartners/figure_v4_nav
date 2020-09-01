@@ -115,11 +115,35 @@ const config = {
       ],
     },
   ],
+
   search: [
     
     { key: "results", label: "Results" },
     { key: "are", label: "Are" },
     { key: "generated", label: "Generated" },
     { key: "here", label: "Here" },
+  ],
+
+  notifications_list: [
+    {
+      id: 1,
+      name: "Sidebar animations geared towards guiding customer through dashboard.",
+      date: "8/25/2020",
+    },
+    {
+      id: 2,
+      name: "Search Bar tied to config.",
+      date: "8/27/2020",
+    },
+    {
+      id: 3,
+      name: "Updated Notifications List.",
+      date: "8/31/2020",
+    },
+    {
+      id: 4,
+      name: "Notifications alert icon connected with 5 day window and notifications sorted by date.",
+      date: "9/1/2020",
+    },
   ],
 };

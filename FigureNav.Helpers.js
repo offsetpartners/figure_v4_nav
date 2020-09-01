@@ -108,6 +108,7 @@ FigureNav.Helpers = {
         Search.Backdrop.addClass("active");
       }
     } else {
+      Search.List.slideUp(SEARCH_DURATION);
       if (Search.List.is(":visible")) Search.List.hide();
       if (Search.Bar.hasClass("active")) {
         Search.Package.removeClass("active");
@@ -127,7 +128,6 @@ FigureNav.Helpers = {
    * @param {Array} searchData
    */
   renderSearchResult: function (input, searchData) {
-    // const searchTable = searchData.links.concat(searchData.search);
     const searchTable = searchData.links;
     console.log(searchTable);
     let searchFilter = searchTable.filter(
@@ -148,11 +148,12 @@ FigureNav.Helpers = {
     for (i = 0; i < tableLength; i++) {
       data.push(searchResults[i]);
     }
+    // console.log(data);
 
-    console.log(data);
+    // console.log(data);
     const results = [];
     const filter = input.toUpperCase();
-    console.log(filter, input);
+    // console.log(filter, input);
     for (let i = 0; i < data.length; i++) {
       const comp = data[i].label;
       var validity = 0;
@@ -164,7 +165,7 @@ FigureNav.Helpers = {
       // Here is where we adjust the percent of closeness for input and resulting search content
       if (validity > 0.45) {
         results.push(data[i]);
-        console.log(validity);
+        // console.log(validity);
       }
     }
 
