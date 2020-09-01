@@ -129,6 +129,7 @@ FigureNav.Helpers = {
    */
   renderSearchResult: function (input, searchData) {
     const searchTable = searchData.links;
+    console.log(searchTable);
     let searchFilter = searchTable.filter(
       (search) => search.key != "dashboard"
     );
@@ -149,6 +150,7 @@ FigureNav.Helpers = {
     }
     // console.log(data);
 
+    // console.log(data);
     const results = [];
     const filter = input.toUpperCase();
     // console.log(filter, input);
