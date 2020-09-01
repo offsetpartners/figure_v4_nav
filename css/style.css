@@ -1,0 +1,51 @@
+/* CSS Variables */
+:root {
+  --body-bgColor: #2a2f56;
+  --modal-bgColor: #2a2f56bd;
+
+  --nav-color: #ffffff;
+  --nav-bgColor: #2a2f56;
+  --nav-links-color: #c0c3dd;
+  --nav-underline-color: #ffffff;
+  --nav-item-animation-duration: 0.2s;
+
+  --nav-dropdown-border-color: #dee2e6;
+  --nav-dropdown-active-bgColor: #ff7358;
+
+  --nav-search-btn-color: #ffffff9a;
+  --nav-search-drop-bgColor: #f6f6fb;
+  --nav-search-btn-bgColor: rgba(255, 255, 255, 0.1);
+  --nav-search-bar-bgColor: rgba(255, 255, 255, 0.25);
+  --nav-search-list-bgColor: rgba(255, 255, 255, 0.99);
+  --nav-search-list-hover-bgColor: rgba(200, 200, 200, 0.35);
+  --nav-search-drop-bgColor: #F6F6FB;
+  --nav-transition-time: .4s;
+}
+
+* {
+  font-family: "Inter", sans-serif !important;
+}
+
+body {
+  width: 100vw;
+  overflow-x: hidden;
+  background-color: var(--nav-bgColor);
+}
+
+.figure-nav {
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  max-width: 200px;
+  color: var(--nav-color);
+}
+
+.figure-nav .dropdown-toggle {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.figure-nav .nav-link {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
