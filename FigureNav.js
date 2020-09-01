@@ -50,34 +50,31 @@ $(document).ready(function () {
       AccountChooser.DropdownMenu.append(dropdownItem);
     });
   }
-
-  // Handle Droddown interactions
-  AccountChooser.Dropdown.on("show.bs.dropdown", function (e) {
-    AccountChooser.DropdownMenu.slideDown(ACCOUNT_CHOOSER_DURATION);
-  });
-
-  AccountChooser.Dropdown.on("hide.bs.dropdown", function (e) {
-    AccountChooser.DropdownMenu.slideUp(ACCOUNT_CHOOSER_DURATION);
-  });
-
+  
   // MARK: Notifications
   if (config.notifications_list && Array.isArray(config.notifications_list)) {
-    config.notifications_list.forEach(function (note) {
+    var alertNoteCount = 0;
+    const sortedNotifications = config.notifications_list.slice().sort((a, b) => (new Date(b.date)) - (new Date(a.date)));
+    sortedNotifications.forEach(function (note) {
       const { id, name, date } = note;
       const dropdownItem = Notifications.DropdownItem(id, name, date);
-
+      if (Notifications.DayCheck(note.date)) alertNoteCount++;
       Notifications.DropdownMenuList.append(dropdownItem);
     });
+    if (alertNoteCount > 0) Notifications.Button.append(Notifications.Alert);
   }
 
-  // Handle Droddown interactions
-  Notifications.Dropdown.on("show.bs.dropdown", function (e) {
-    Notifications.DropdownMenu.slideDown(ACCOUNT_CHOOSER_DURATION);
-  });
-
-  Notifications.Dropdown.on("hide.bs.dropdown", function (e) {
-    Notifications.DropdownMenu.slideUp(ACCOUNT_CHOOSER_DURATION);
-  });
+  // Handle Dropdown interactions
+  const DropdownHandlers = [AccountChooser, Notifications];
+  DropdownHandlers.forEach(Handler => {
+    Handler.Dropdown.on("show.bs.dropdown", function (e) {
+      Handler.DropdownMenu.slideDown(ACCOUNT_CHOOSER_DURATION);
+    });
+  
+    Handler.Dropdown.on("hide.bs.dropdown", function (e) {
+      Handler.DropdownMenu.slideUp(ACCOUNT_CHOOSER_DURATION);
+    });
+  })
 
   // MARK: Links
   if (config.links && Array.isArray(config.links)) {
@@ -86,3 +83,4 @@ $(document).ready(function () {
     return SideBar.Body(links);
   }
 });
+
