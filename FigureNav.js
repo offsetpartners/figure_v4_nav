@@ -10,6 +10,7 @@ $(document).ready(function () {
    */
   $(window).mousedown(function (e) {
     Helpers.toggleSearchState();
+    // console.log(Search.ListItemLink);
     e.stopPropagation();
   });
 
@@ -74,7 +75,7 @@ $(document).ready(function () {
     Handler.Dropdown.on("hide.bs.dropdown", function (e) {
       Handler.DropdownMenu.slideUp(ACCOUNT_CHOOSER_DURATION);
     });
-  })
+  });
 
   // MARK: Links
   if (config.links && Array.isArray(config.links)) {

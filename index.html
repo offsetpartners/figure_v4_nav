@@ -135,7 +135,7 @@
             />
             <ul id="dashboard-search-list">
               <li class="dashboard-search-list-item advanced-search">
-                <a target="_blank" href="#">Advanced Search</a>
+                <a target="_blank" class="advanced-link" href="#">Advanced Search</a>
               </li>
             </ul>
           </div>
@@ -226,6 +226,7 @@
       </nav>
       <div class="search-backdrop"></div>
     </header>
+    <div id="figure-render"></div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
@@ -247,15 +248,18 @@
     <!-- FigureNav Constants -->
     <script text="text/javascript">
       const FigureNav = {};
+      const FigureRender = {};
     </script>
     <script src="FigureNav.State.js"></script>
     <script src="FigureNav.Helpers.js"></script>
     <script src="FigureNav.Animations.js"></script>
     <script src="FigureNav.Components.js"></script>
+    <script src="FigureRender.Base.js"></script>
 
     <!-- Config -->
     <script src="config.js"></script>
 
     <script src="FigureNav.js"></script>
+    <script src="FigureRender.js"></script>
   </body>
 </html>

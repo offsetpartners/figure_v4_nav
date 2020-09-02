@@ -6,6 +6,10 @@
   padding-bottom: 16px;
   flex-direction: column;
 }
+.left-nav-container {
+  padding-left: 30px;
+  padding-right: 30px;
+}
 
 /* Account Chooser */
 .figure-nav #figure-nav-account-chooser {

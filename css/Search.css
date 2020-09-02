@@ -1,6 +1,6 @@
 .figure-top-nav {
   width: 100%;
-  max-height: 70px;
+  max-height: var(--top-nav-height);
   color: var(--nav-color);
 }
 
@@ -37,6 +37,8 @@
   border: 0px solid transparent;
   color: var(--nav-search-btn-color);
   background: var(--nav-search-bar-bgColor);
+  font-size: 14px;
+  color: var(--nav-search-text-color);
 }
 
 .figure-top-nav .figure-dashboard-search .dashboard-search-bar.active {
@@ -57,7 +59,7 @@
 
 .figure-top-nav .figure-dashboard-search #dashboard-search-list {
   display: none;
-  top: 52px;
+  top: 49px;
   left: 0px;
   width: 100%;
   padding: 0;
@@ -103,7 +105,8 @@
   display: block;
   padding: 5px 0 5px 12px;
   text-decoration: none;
-  color: var(--body-bgColor);
+  font-size: 14px;
+  color: var(--nav-search-text-color);
   background: var(--nav-search-list-bgColor);
 }
 

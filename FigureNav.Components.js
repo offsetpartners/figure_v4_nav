@@ -111,33 +111,6 @@ FigureNav.Components = {
     },
   },
 
-  Search: {
-    Package: $(".figure-dashboard-search"),
-    Icon: $(".figure-dashboard-search .search-icon"),
-    Bar: $(".dashboard-search-bar"),
-    List: $("#dashboard-search-list"),
-    Backdrop: $(".search-backdrop"),
-    /**
-     * @param {String} key
-     * @param {String} label
-     * @param {String} class
-     */
-    ListItem: function (key, label) {
-      const li = $("<li></li>");
-      li.addClass("dashboard-search-list-item");
-
-      const anchor = $(`<a>${label}</a>`);
-      anchor.attr("href", key);
-      anchor.attr("target", "_blank");
-
-      li.append(anchor);
-      return li;
-    },
-    AdvancedSearch: function () {
-      const listEnd = this.ListItem("#", "Advanced Search");
-      return listEnd;
-    },
-  },
   Notifications: {
     DayCheck: function(date) {
       var n = Date.now();
@@ -147,22 +120,10 @@ FigureNav.Components = {
     },
     Button: $("#figure-nav-notifications-list"),
     Icon:   $(".dashboard-notifications-icon"),
-    Alert:  $(`<svg
-              class="dashboard-notifications-icon-alert"
-              width="7"
-              height="6"
-              viewBox="0 0 7 6"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <ellipse
-                cx="3.76194"
-                cy="3"
-                rx="2.85984"
-                ry="3"
-                fill="#FF7358"
-              />
-            </svg>`),
+    Alert:  
+      $(`<svg class="dashboard-notifications-icon-alert" width="7" height="6" viewBox="0 0 7 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="3.76194" cy="3" rx="2.85984" ry="3" fill="#FF7358" />
+      </svg>`),
     Dropdown: $(".figure-nav-notifications-dropdown"),
     DropdownMenu: $(".figure-nav-notifications-dropdown .dropdown-menu"),
     DropdownMenuList: $(".figure-nav-notifications-dropdown .dropdown-menu .figure-nav-notifications-list"),
@@ -172,17 +133,15 @@ FigureNav.Components = {
      */
     DropdownItem: function (id, name, date) {
       const inline = $(`<div></div>`);
-      inline.addClass("notification-inline");
+      inline.addClass('notification-inline');
       let infoConAlert = "";
-      // if notification is less than 5 days old, 
-      // icon is figure orange. 
       this.DayCheck(date) ? infoConAlert = "" : infoConAlert = "info-con-path";
       const infoCon = 
-      `<svg class="info-con ml-2" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path class="${infoConAlert}" d="M8.00002 15.3333C12.0501 15.3333 15.3334 12.05 15.3334 7.99996C15.3334 3.94987 12.0501 0.666626 8.00002 0.666626C3.94993 0.666626 0.666687 3.94987 0.666687 7.99996C0.666687 12.05 3.94993 15.3333 8.00002 15.3333Z" stroke="#4F5268" stroke-miterlimit="10" stroke-linecap="square"/>
-        <path class="${infoConAlert}" d="M7.99994 8V11.5" stroke="#4F5268" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-        <path class="${infoConAlert}" d="M7.99994 5L7.99994 6" stroke="#4F5268" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>`;
+        $(`<svg class="info-con ml-2" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="${infoConAlert}" d="M8.00002 15.3333C12.0501 15.3333 15.3334 12.05 15.3334 7.99996C15.3334 3.94987 12.0501 0.666626 8.00002 0.666626C3.94993 0.666626 0.666687 3.94987 0.666687 7.99996C0.666687 12.05 3.94993 15.3333 8.00002 15.3333Z" stroke="#4F5268" stroke-miterlimit="10" stroke-linecap="square"/>
+          <path class="${infoConAlert}" d="M7.99994 8V11.5" stroke="#4F5268" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+          <path class="${infoConAlert}" d="M7.99994 5L7.99994 6" stroke="#4F5268" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>`);
       const months = ["Jan","Feb","March","April","May","June","July","Aug","Sept","Oct","Nov","Dec"];
       const thisDate = new Date(date);
       const m = months[thisDate.getMonth(date)];
@@ -194,9 +153,41 @@ FigureNav.Components = {
       return inline;
     },
   },
-  Containers: {
-    FullScreen: $('<div class="fullscreen-container"></div>'),
-    OneThird: $('<div class="onethird-container"></div>'),
-    TwoThirds: $('<div class="twothirds-container"></div>'),
+
+  Search: {
+    Package: $(".figure-dashboard-search"),
+    Icon: $(".figure-dashboard-search .search-icon"),
+    Bar: $(".dashboard-search-bar"),
+    List: $("#dashboard-search-list"),
+    ListItemLink: $("#dashboard-search-list .dashboard-search-list-item a"),
+    Backdrop: $(".search-backdrop"),
+    /**
+     * @param {String} key
+     * @param {String} label
+     * @param {String} style
+     * @param {String} span
+     */
+    ListItem: function (key, label, style = "search-results", span = "") {
+      const li = $("<li></li>");
+      li.addClass("dashboard-search-list-item");
+
+      const anchor = $(`<a class="${style}">${label}<span>${span}</span></a>`);
+      anchor.attr("href", key);
+      anchor.attr("target", "_blank");
+
+      li.append(anchor);
+      return li;
+    },
+    /**
+     * @param {String} input
+     */
+    SeeAll: function (input) {
+      const listStart = this.ListItem("#", 'See all ',"see-all", '"' + input + '"');
+      return listStart;
+    },
+    AdvancedSearch: function () {
+      const listEnd = this.ListItem("#", "Advanced Search", "advanced-link");
+      return listEnd;
+    },
   },
 };
