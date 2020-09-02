@@ -1,6 +1,6 @@
-FigureRender.Base = {
+FigureContent.Base = {
   Parts: {
-    FigureRender: $('#figure-render'),
+    FigureContent: $('#figure-content'),
     Row: $('<div class="row figure-row"></div>'),
     /**
      * @param {String} wide

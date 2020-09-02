@@ -10,7 +10,7 @@
 }
 
 .account-details-links {
-  padding-right: 27px;
+  /* padding-right: 27px; */
   align-self: center;
   display: flex;
 }
@@ -21,7 +21,7 @@
   width: 20px;
 }
 
-.account-details-links .dashboard-notifications-icon {
+.account-details-links .dashboard-icons {
   height: 22px;
   width: 22px;
   margin-bottom: -6px;
@@ -45,6 +45,7 @@
   color: var(--nav-links-color);
   transition: color 0.4s ease-in-out;
   font-size: 16px;
+  margin: 0 10px;
 }
 
 .account-details-links a:hover {
@@ -52,43 +53,15 @@
   transition: color 0.4s ease-in-out;
   text-decoration: none;
 }
-#figure-nav-profile-details-name {
-  font-size: 14px;
-  align-self: center;
-}
 #figure-nav-profile-details-icon {
   display: flex;
   align-self: center;
   padding: 0 12px;
 }
 .figure-nav-profile-dropdown {
-  padding-left: 10px;
+  /* padding-left: 10px; */
   display: inline-flex;
-  border-left: 1px solid var(--nav-links-color);
-}
-
-#figure-nav-profile-details-name {
-  font-size: 14px;
-  align-self: center;
-  color: var(--nav-links-color);
-  transition: color 0.4s ease-in-out;
-}
-
-@media (max-width: 1199px) and (min-width: 768px)  {
-  #figure-nav-profile-details-name {
-    display: none;
-  }
-}
-
-@media (max-width: 637px)  {
-  #figure-nav-profile-details-name {
-    display: none;
-  }
-}
-
-.figure-nav-profile-dropdown:hover #figure-nav-profile-details-name {
-  color: var(--nav-color);
-  transition: color 0.4s ease-in-out;
+  /* border-left: 1px solid var(--nav-links-color); */
 }
 
 /*  */
@@ -97,7 +70,6 @@
   align-items: center;
   width: 100%;
   padding: 5px 0;
-  border-bottom: 1px solid var(--nav-dropdown-border-color);
 }
 .notification-inline:first-child {
   border-top-right-radius: 4px;
