@@ -129,7 +129,7 @@ FigureNav.Helpers = {
    */
   renderSearchResult: function (input, searchData) {
     const searchTable = searchData.links;
-    console.log(searchTable);
+    // console.log(searchTable);
     let searchFilter = searchTable.filter(
       (search) => search.key != "dashboard"
     );
@@ -210,7 +210,11 @@ FigureNav.Helpers = {
         if (i > 0) costs[s2.length] = lastValue;
       }
       return costs[s2.length];
-    }
+    };
+
+    if (results.length > 0) {
+      FigureNav.Components.Search.List.prepend(FigureNav.Components.Search.SeeAll(input));
+    };
 
     results.forEach(function (tableData) {
       const row = FigureNav.Components.Search.ListItem(
