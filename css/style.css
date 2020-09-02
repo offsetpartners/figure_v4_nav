@@ -56,7 +56,7 @@ body {
   padding-right: 0px !important;
 }
 
-#figure-render {
+#figure-content {
   /* background: var(--nav-search-bar-bgColor); */
   position: absolute;
   top: var(--top-nav-height);
