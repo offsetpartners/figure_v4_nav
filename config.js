@@ -319,5 +319,10 @@ const config = {
       name: "Notifications alert icon connected with 5 day window and notifications sorted by date.",
       date: "9/1/2020",
     },
+    {
+      id: 5,
+      name: "Formatted Sidebar with more custom styles to reflect Content designs. Also, revised top-nav with new icons and simplified user icon.",
+      date: "9/2/2020",
+    },
   ],
 };

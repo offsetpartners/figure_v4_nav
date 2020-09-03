@@ -169,6 +169,7 @@
   transition: var(--nav-item-animation-duration) transform linear;
 }
 
+/* Content Outputs formatting */
 .nav-sub-div.inline-flex {
   display: flex;
   align-items: center;
