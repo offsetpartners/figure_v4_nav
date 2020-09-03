@@ -17,8 +17,8 @@
 
 .account-details-links .dashboard-notifications {
   position: relative;
-  align-items: center;
-  width: 20px;
+  /* align-items: center; */
+  /* width: 20px; */
 }
 
 .account-details-links .dashboard-icons {
@@ -27,33 +27,34 @@
   margin-bottom: -6px;
 }
 
-.account-details-links .dashboard-notifications-icon path {
+.account-details-links .dashboard-icons path {
   stroke: var(--nav-links-color);
-  transition: stroke 0.4s ease-in-out;
+  transition: stroke var(--nav-transition-time) ease-in-out;
 }
-.account-details-links .dashboard-notifications-icon:hover path {
+.account-details-links .dashboard-icons:hover path {
   stroke: var(--nav-color);
-  transition: stroke 0.4s ease-in-out;
+  transition: stroke var(--nav-transition-time) ease-in-out;
 }
 .account-details-links .dashboard-notifications-icon-alert {
   position: absolute;
-  top: 5px;
-  right: -1px;
+  top: 6px;
+  right: 11px;
 }
 
 .account-details-links a {
   color: var(--nav-links-color);
-  transition: color 0.4s ease-in-out;
+  transition: color var(--nav-transition-time) ease-in-out;
   font-size: 16px;
-  margin: 0 10px;
+  padding: 0 10px;
 }
 
 .account-details-links a:hover {
   color: var(--nav-color);
-  transition: color 0.4s ease-in-out;
+  transition: color var(--nav-transition-time) ease-in-out;
   text-decoration: none;
+  cursor: pointer;
 }
-#figure-nav-profile-details-icon {
+#figure-nav-profile-details {
   display: flex;
   align-self: center;
   padding: 0 12px;
@@ -98,7 +99,7 @@
 }
 
 /* Notifications Dropdown Menu */
-.figure-nav-notifications-dropdown .dropdown-menu {
+.account-details .dropdown-menu {
   width: 350px;
   padding: 0;
   max-height: 180px;
@@ -108,7 +109,7 @@
 /* .figure-nav-notifications-dropdown .dropdown-menu.show {
   margin-left: 40px;
 } */
-.figure-nav-notifications-dropdown .dropdown-menu .figure-nav-notifications-list {
+.figure-nav-notifications-dropdown .dropdown-menu .figure-nav-dropdown-render {
   overflow: auto;
   max-height: 179px;
 }

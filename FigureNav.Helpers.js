@@ -35,6 +35,7 @@ FigureNav.Helpers = {
       FigureNav.Animations.sharedX(Component, direction, function () {
         // Render new nav
         FigureNav.Components.SideBar.Body(children, label, prevItem);
+        // console.log(FigureNav.State.activeLink)
       });
       return;
     }
@@ -88,6 +89,88 @@ FigureNav.Helpers = {
       children,
       prevItem,
     };
+  },
+  /**
+   * navItem interjecting custom formatting 
+   * @param {Object[]} link - config destination.
+   * @param {String} link[].key - config key.
+   * @param {String} link[].label - config label.
+   * @param {callback} navItem
+   */
+  navItemFormatting: function (link, navItem) {
+    if (FigureNav.State.activeLink[0] == "content") {
+      if (FigureNav.State.activeLink.length === 1) {
+        console.log(link.key)
+        if (link.key === "analytics") {
+          navItem.css("margin-bottom", "20px");
+        }
+      // } else if (FigureNav.State.activeLink[1] == "pages") {
+        // if (link.isAvailable) {
+        //   console.log(link);
+        // }
+      } else if (FigureNav.State.activeLink.length === 2) {
+        console.log(link.key)
+        if (link.key === "content_trade") {
+          navItem.css("margin-bottom", "20px");
+        }
+      }
+    }
+  },
+    /**
+   * Sorts Content array based on order preference and availability (isAvailable) 
+   * @param {Array.<{key: String, label: String, children: []|null, available: Boolean, order: Number}>y} array
+   */
+  contentSort: function (array) {
+    /** Sorting function if order is preset **/
+    function array_move(arr, old_index, new_index) {
+      if (new_index >= arr.length) {
+        var k = new_index - arr.length + 1;
+        while (k--) {
+          arr.push(undefined);
+        }
+      }
+      arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+      return arr; // for testing
+    };
+    /** Sorts alphabetically by label to start **/
+    array.sort(function(a, b){
+      if(a.label < b.label) { return -1; }
+      if(a.label > b.label) { return 1; }
+      return 0;
+    })
+    /** Checks if array has any calls for sorting via order_index **/
+    arrayEnd = [];
+    array.forEach(item => {
+      if (item.order_index >= 0) {
+        if(item.order_index > array.length - 1) {
+          arrayEnd.push(item);
+        } else {
+          let order = array.length - 1;
+          item.order_index > (array.length - 1) ? order = array.length - 1 : order = item.order_index;
+          array_move(array, array.indexOf(item), order);
+        }
+      }
+    });
+    array.forEach(item => {
+      if (item.order_index >= 0) {
+        let order = array.length - 1;
+        item.order_index > (array.length - 1) ? order = array.length - 1 : order = item.order_index;
+        array_move(array, array.indexOf(item), order);
+      }
+    });
+    /** Checks if array key is an available product and separates into 2 arrays if so **/
+    let arrayAvailable = [];
+    const arrayNotAvailable = [];
+    const available = (avail) => avail.isAvailable;
+    // console.log(array.some(available));
+    if (array.some(available)) {
+      array.forEach(e => {
+        e.isAvailable ? arrayAvailable.push(e) : arrayNotAvailable.push(e);
+      })
+    }
+    let newArray = []
+    arrayNotAvailable.length > 0 ? newArray = [arrayAvailable, arrayNotAvailable] : newArray = [arrayAvailable];
+    return newArray;
   },
   /**
    * Toggle Search Component State

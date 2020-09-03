@@ -1,6 +1,6 @@
 $(document).ready(function () {
   const ACCOUNT_CHOOSER_DURATION = 180;
-  const { Helpers, Components } = FigureNav;
+  const { Helpers, Components, State } = FigureNav;
 
   const { renderSearchResult } = Helpers;
   const { Search, SideBar, AccountChooser, Notifications } = Components;

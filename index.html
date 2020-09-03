@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="css/Search.css" />
     <link rel="stylesheet" href="css/AccountDetails.css" />
     <link rel="stylesheet" href="css/Footer.css" />
+    <link rel="stylesheet" href="css/Content.css" />
     <title>Figure v4 Nav</title>
   </head>
 
@@ -177,29 +178,46 @@
                   </svg>
                 </a>
                 <div
-                class="dropdown-menu dropdown-menu-right"
-                aria-labelledby="figure-nav-notifications-list"
+                  class="dropdown-menu dropdown-menu-right"
+                  aria-labelledby="figure-nav-notifications-list"
                 >
                   <!-- Caret pointing up optional -->
                   <!-- <span class="dropdown-menu-arrow"></span> -->
-                  <div class="figure-nav-notifications-list"></div>
+                  <div class="figure-nav-notifications-list figure-nav-dropdown-render"></div>
                 </div>
               </div>
-              <a href="/help" class="dashboard-help">
-                <svg class="dashboard-icons" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g clip-path="url(#clip0)">
-                  <path d="M10.6219 19.1666C15.6845 19.1666 19.7885 15.0625 19.7885 9.99992C19.7885 4.93731 15.6845 0.833252 10.6219 0.833252C5.55926 0.833252 1.4552 4.93731 1.4552 9.99992C1.4552 15.0625 5.55926 19.1666 10.6219 19.1666Z" stroke="#C0C3DD" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="square"/>
-                  <path d="M8.2218 7.60261C8.2218 4.84361 12.8202 4.84356 12.8202 8.17736C12.8202 8.98209 12.4057 9.75844 11.4407 10.3616C10.4756 10.9648 10.6 11.7668 10.6 11.7668" stroke="#C0C3DD" stroke-width="1.5" stroke-linecap="round"/>
-                  <circle cx="10.5219" cy="14.5669" r="1" fill="#C0C3DD"/>
-                  </g>
-                  <defs>
-                  <clipPath id="clip0">
-                  <rect width="20" height="20" fill="white" transform="translate(0.621826)"/>
-                  </clipPath>
-                  </defs>
-                </svg>
-              </a>
-              <a href="/settings" class="dashboard-settings">
+              <div class="drop figure-nav-help-dropdown">
+                <a
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  data-toggle="dropdown"
+                  id="figure-nav-help-links"
+                  class="dashboard-help"
+                >
+                  <svg class="dashboard-icons" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0)">
+                    <path d="M10.6219 19.1666C15.6845 19.1666 19.7885 15.0625 19.7885 9.99992C19.7885 4.93731 15.6845 0.833252 10.6219 0.833252C5.55926 0.833252 1.4552 4.93731 1.4552 9.99992C1.4552 15.0625 5.55926 19.1666 10.6219 19.1666Z" stroke="#C0C3DD" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="square"/>
+                    <path d="M8.2218 7.60261C8.2218 4.84361 12.8202 4.84356 12.8202 8.17736C12.8202 8.98209 12.4057 9.75844 11.4407 10.3616C10.4756 10.9648 10.6 11.7668 10.6 11.7668" stroke="#C0C3DD" stroke-width="1.5" stroke-linecap="round"/>
+                    <circle cx="10.5219" cy="14.5669" r="1" fill="#C0C3DD"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0">
+                    <rect width="20" height="20" fill="white" transform="translate(0.621826)"/>
+                    </clipPath>
+                    </defs>
+                  </svg>
+                </a>
+                <div
+                  class="dropdown-menu dropdown-menu-right"
+                  aria-labelledby="figure-nav-help-links"
+                >
+                  <!-- Caret pointing up optional -->
+                  <!-- <span class="dropdown-menu-arrow"></span> -->
+                  <div class="figure-nav-help-links figure-nav-dropdown-render"></div>
+                </div>
+              </div>
+              <a class="dashboard-settings">
                 <svg class="dashboard-icons" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clip-path="url(#clip0)">
                   <path d="M19.7885 9.99992C19.7885 9.07908 19.0427 8.33325 18.1219 8.33325H17.0702C16.9127 7.72325 16.6727 7.14825 16.3602 6.61825L17.1035 5.87492C17.7544 5.22408 17.7544 4.16908 17.1035 3.51825C16.4527 2.86742 15.3977 2.86742 14.7469 3.51825L14.0035 4.26158C13.4735 3.94908 12.8985 3.70908 12.2885 3.55158V2.49992C12.2885 1.57992 11.5427 0.833252 10.6219 0.833252C9.70103 0.833252 8.9552 1.57909 8.9552 2.49992V3.55158C8.3452 3.70908 7.7702 3.94908 7.2402 4.26158L6.49687 3.51825C5.84603 2.86742 4.79103 2.86742 4.1402 3.51825C3.48937 4.16908 3.48937 5.22408 4.1402 5.87492L4.88353 6.61825C4.57103 7.14825 4.33103 7.72325 4.17353 8.33325H3.12187C2.20187 8.33325 1.4552 9.07908 1.4552 9.99992C1.4552 10.9208 2.20103 11.6666 3.12187 11.6666H4.17353C4.33103 12.2766 4.57103 12.8516 4.88353 13.3816L4.1402 14.1249C3.48937 14.7758 3.48937 15.8307 4.1402 16.4816C4.79103 17.1324 5.84603 17.1324 6.49687 16.4816L7.2402 15.7382C7.76937 16.0507 8.3452 16.2908 8.9552 16.4483V17.4999C8.9552 18.4199 9.70103 19.1666 10.6219 19.1666C11.5427 19.1666 12.2885 18.4207 12.2885 17.4999V16.4483C12.8985 16.2908 13.4735 16.0507 14.0035 15.7382L14.7469 16.4816C15.3977 17.1324 16.4527 17.1324 17.1035 16.4816C17.7544 15.8307 17.7544 14.7758 17.1035 14.1249L16.3602 13.3816C16.6727 12.8524 16.9127 12.2766 17.0702 11.6666H18.1219C19.0419 11.6666 19.7885 10.9208 19.7885 9.99992Z" stroke="#C0C3DD" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -214,14 +232,13 @@
               </a>
             </div>
             <div class="figure-nav-profile-dropdown">
-              <!-- Modal -->
               <a
                 type="button"
                 aria-haspopup="true"
                 aria-expanded="false"
-                data-toggle="modal"
-                id="figure-nav-profile-details-icon"
-                class="btn figure-nav-profile-details-chooser"
+                data-toggle="dropdown"
+                id="figure-nav-profile-details"
+                class="dashboard-profile"
               >
                 <svg
                   width="32"
@@ -237,6 +254,14 @@
                   />
                 </svg>
               </a>
+              <div
+                class="dropdown-menu dropdown-menu-right"
+                aria-labelledby="figure-nav-profile-details"
+              >
+                <!-- Caret pointing up optional -->
+                <!-- <span class="dropdown-menu-arrow"></span> -->
+                <div class="figure-nav-profile-details figure-nav-dropdown-render"></div>
+              </div>
             </div>
           </div>
         </div>

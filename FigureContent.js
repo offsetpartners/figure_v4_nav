@@ -1,6 +1,6 @@
 $(document).ready(function () {
   const { Base } = FigureContent;
-  const { Components } = FigureNav;
+  const { Components, State } = FigureNav;
   
   const { Parts } = Base;
   const { Search } = Components;
@@ -30,6 +30,7 @@ $(document).ready(function () {
    */
   $(window).mousedown(function (e) {
     // console.log($(e.target));
+    // console.log(State.activeLink);
     if ($(e.target).closest('li').hasClass('dashboard-search-list-item')) {
       Parts.FigureContent.contents().empty();
       if ($(e.target).closest('li').find('a').hasClass('see-all') || $(e.target).closest('li').find('a').hasClass('advanced-link')) {
@@ -42,9 +43,7 @@ $(document).ready(function () {
         // console.log(fullCard);
         Parts.FigureContent.html(fullCard);
       }
-      // FigureNav.State.activeLink = 
     }
-    // console.log(FigureNav.State.activeLink);
     e.stopPropagation();
   });
 
