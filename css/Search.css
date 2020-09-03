@@ -38,7 +38,7 @@
   color: var(--nav-search-btn-color);
   background: var(--nav-search-bar-bgColor);
   font-size: 14px;
-  color: var(--nav-search-text-color);
+  /* color: var(--nav-search-text-color); */
 }
 
 .figure-top-nav .figure-dashboard-search .dashboard-search-bar.active {

@@ -54,6 +54,41 @@ FigureNav.Components = {
       return text;
     },
     /**
+     * @param {String} label
+     */
+    SubLabel: function (label) {
+      let text;
+      if (!FigureNav.Helpers.hasActiveLink()) {
+        text = $("<h5></h5>");
+      } else {
+        text = $("<p></p>");
+      }
+      text.addClass("nav-sub-label");
+      text.append(`<span>${label}</span>`);
+
+      return text;
+    },
+    SubLink: function (label) {
+      let text;
+      if (!FigureNav.Helpers.hasActiveLink()) {
+        text = $("<h5></h5>");
+      } else {
+        text = $("<p></p>");
+      }
+      text.addClass("nav-sub-label");
+      text.append(`<span>${label}</span>`);
+
+      return text;
+    },
+    /**
+     * @param {String} style - additional classes
+     */
+    SubDiv: function (style = "") {
+      let div = $("<div></div>");
+      div.addClass(`nav-sub-div ${style}`);
+      return div;
+    },
+    /**
      * @param {Array.<{key: String, label: String}>} array
      * @param {String} label
      * @param {String} previousItem
@@ -81,13 +116,52 @@ FigureNav.Components = {
         this.Container.append(title);
       }
 
-      return array.map(function (link) {
-        const { key, label } = link;
-
-        const navItem = FigureNav.Components.SideBar.Item(key, label);
-
-        FigureNav.Components.SideBar.Container.append(navItem);
-      });
+      // if NewArray available for Content separation, then run this:
+      const newArray = FigureNav.Helpers.contentSort(array);
+      if (newArray.length === 2 && FigureNav.State.activeLink[1] === "pages") {
+        // console.log(newArray);      
+        // Available Content  
+        newArray[0].map(function (link) {
+          const { key, label } = link;
+          const navItem = FigureNav.Components.SideBar.Item(key, label);
+          FigureNav.Helpers.navItemFormatting(link, navItem)
+          FigureNav.Components.SideBar.Container.append(navItem);
+        })
+        // Unavailable Content Title
+        const subDiv1 = FigureNav.Components.SideBar.SubDiv("inline-flex");
+        const subLabel = FigureNav.Components.SideBar.SubLabel("unavailable");
+        const infoCon = FigureNav.Components.Notifications.InfoCon().removeClass("ml-2");
+        subDiv1
+          .append(subLabel)
+          .append(infoCon);
+        FigureNav.Components.SideBar.Container.append(subDiv1);
+        const subDiv2 = FigureNav.Components.SideBar.SubDiv();
+        // Unavailable Content
+        newArray[1].map(function (link) {
+          const { key, label } = link;
+            
+          const navItem = FigureNav.Components.SideBar.Item(key, label);
+          FigureNav.Helpers.navItemFormatting(link, navItem)
+          // console.log(navItem);
+          navItem.find('.nav-link').attr('disabled', 'true');
+          subDiv2.append(navItem);
+        })
+        // Learn More Link
+        FigureNav.Components.SideBar.Container.append(subDiv2);
+        const subDiv3 = FigureNav.Components.SideBar.SubDiv("learn-more");
+        const learnMore = FigureNav.Components.SideBar.Item("learn-more", "Learn More");
+        subDiv3.append(learnMore);
+        FigureNav.Components.SideBar.Container.append(subDiv3);
+      //else this
+      } else {
+        return array.map(function (link) {
+          const { key, label } = link;
+           
+          const navItem = FigureNav.Components.SideBar.Item(key, label);
+          FigureNav.Helpers.navItemFormatting(link, navItem);
+          FigureNav.Components.SideBar.Container.append(navItem);
+        });
+      }
     },
     /**
      * @param {String} key
@@ -128,6 +202,18 @@ FigureNav.Components = {
     DropdownMenu: $(".figure-nav-notifications-dropdown .dropdown-menu"),
     DropdownMenuList: $(".figure-nav-notifications-dropdown .dropdown-menu .figure-nav-notifications-list"),
     /**
+     * @param {String} alert - if "info-con-path" goes from gray to orange
+     */
+    InfoCon: function (alert = "") {
+      return (
+        $(`<svg class="info-con ml-2" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="${alert}" d="M8.00002 15.3333C12.0501 15.3333 15.3334 12.05 15.3334 7.99996C15.3334 3.94987 12.0501 0.666626 8.00002 0.666626C3.94993 0.666626 0.666687 3.94987 0.666687 7.99996C0.666687 12.05 3.94993 15.3333 8.00002 15.3333Z" stroke="#4F5268" stroke-miterlimit="10" stroke-linecap="square"/>
+          <path class="${alert}" d="M7.99994 8V11.5" stroke="#4F5268" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+          <path class="${alert}" d="M7.99994 5L7.99994 6" stroke="#4F5268" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>`)
+      );
+    },
+    /**
      * @param {String} id
      * @param {String} name
      */
@@ -136,12 +222,7 @@ FigureNav.Components = {
       inline.addClass('notification-inline');
       let infoConAlert = "";
       this.DayCheck(date) ? infoConAlert = "" : infoConAlert = "info-con-path";
-      const infoCon = 
-        $(`<svg class="info-con ml-2" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path class="${infoConAlert}" d="M8.00002 15.3333C12.0501 15.3333 15.3334 12.05 15.3334 7.99996C15.3334 3.94987 12.0501 0.666626 8.00002 0.666626C3.94993 0.666626 0.666687 3.94987 0.666687 7.99996C0.666687 12.05 3.94993 15.3333 8.00002 15.3333Z" stroke="#4F5268" stroke-miterlimit="10" stroke-linecap="square"/>
-          <path class="${infoConAlert}" d="M7.99994 8V11.5" stroke="#4F5268" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-          <path class="${infoConAlert}" d="M7.99994 5L7.99994 6" stroke="#4F5268" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>`);
+      const infoCon = this.InfoCon(infoConAlert);
       const months = ["Jan","Feb","March","April","May","June","July","Aug","Sept","Oct","Nov","Dec"];
       const thisDate = new Date(date);
       const m = months[thisDate.getMonth(date)];
