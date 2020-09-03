@@ -347,17 +347,14 @@ const config = {
         position: "Sale Manager",
         email: "jane.richards@josephphelpsvineyards.com",
       },
-      order_index: 0, 
     },    
     {
       key: "profile", 
       label: "Profile", 
-      order_index: 0, 
     },
     {
       key: "sign_out", 
-      label: "Sign out",
-      order_index: 2, 
+      label: "Sign out", 
     },
   ],
 };

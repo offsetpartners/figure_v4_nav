@@ -100,7 +100,7 @@ FigureNav.Helpers = {
   navItemFormatting: function (link, navItem) {
     if (FigureNav.State.activeLink[0] == "content") {
       if (FigureNav.State.activeLink.length === 1) {
-        console.log(link.key)
+        // console.log(link.key)
         if (link.key === "analytics") {
           navItem.css("margin-bottom", "20px");
         }
@@ -109,7 +109,7 @@ FigureNav.Helpers = {
         //   console.log(link);
         // }
       } else if (FigureNav.State.activeLink.length === 2) {
-        console.log(link.key)
+        // console.log(link.key)
         if (link.key === "content_trade") {
           navItem.css("margin-bottom", "20px");
         }
