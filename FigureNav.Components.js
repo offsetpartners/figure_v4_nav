@@ -216,6 +216,7 @@ FigureNav.Components = {
     /**
      * @param {String} id
      * @param {String} name
+     * @param {String} date - slashes and dashes work
      */
     DropdownItem: function (id, name, date) {
       const inline = $(`<div></div>`);
@@ -232,6 +233,53 @@ FigureNav.Components = {
       anchor.addClass("dropdown-item");
       inline.append(infoCon).append(anchor);
       return inline;
+    },
+  },
+
+  Help: {
+    Button: $("#figure-nav-help-links"),
+    Icon:   $(".dashboard-help-icon"),
+    HelpIcon: function() {
+      return (
+        $(`<svg class="dropdown-icons dropdown-help-icon" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0)">
+          <path d="M10.6219 19.1666C15.6845 19.1666 19.7885 15.0625 19.7885 9.99992C19.7885 4.93731 15.6845 0.833252 10.6219 0.833252C5.55926 0.833252 1.4552 4.93731 1.4552 9.99992C1.4552 15.0625 5.55926 19.1666 10.6219 19.1666Z" stroke="#C0C3DD" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="square"/>
+          <path d="M8.2218 7.60261C8.2218 4.84361 12.8202 4.84356 12.8202 8.17736C12.8202 8.98209 12.4057 9.75844 11.4407 10.3616C10.4756 10.9648 10.6 11.7668 10.6 11.7668" stroke="#C0C3DD" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="10.5219" cy="14.5669" r="1" fill="#C0C3DD"/>
+          </g>
+          <defs>
+          <clipPath id="clip0">
+          <rect width="20" height="20" fill="white" transform="translate(0.621826)"/>
+          </clipPath>
+          </defs>
+        </svg>`)
+      );
+    },
+    Dropdown: $(".figure-nav-help-dropdown"),
+    DropdownMenu: $(".figure-nav-help-dropdown .dropdown-menu"),
+    DropdownMenuList: $(".figure-nav-help-dropdown .dropdown-menu .figure-nav-help-links"),
+    Title: function () {
+      const 
+    }
+    /**
+     * @param {String} key
+     * @param {String} label
+     */
+    DropdownItem: function (key, label) {
+      const item = $(`<li></li>`);
+      item.addClass("nav-item");
+      const link = $(`<a></a>`);
+      link.addClass("nav-link");
+      const text = this.Label(label);
+      item.append(link);
+      link.append(text);
+
+      link.click(function (e) {
+        FigureNav.State.activeLink.push(key);
+        FigureNav.Helpers.updateSidebar("forward");
+      });
+
+      return item;
     },
   },
 

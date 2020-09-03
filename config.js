@@ -325,4 +325,39 @@ const config = {
       date: "9/2/2020",
     },
   ],
+  help_doc: [
+    {
+      key: "documentation", 
+      label: "Documentation",
+      order_index: 0, 
+    },
+    {
+      key: "support", 
+      label: "Support",
+      order_index: 1, 
+    },
+  ],
+  user_info: [
+    {
+      key: "user_details",
+      label: "User Details",
+      details: {
+        first_name: "Jane",
+        last_name: "Richards",
+        position: "Sale Manager",
+        email: "jane.richards@josephphelpsvineyards.com",
+      },
+      order_index: 0, 
+    },    
+    {
+      key: "profile", 
+      label: "Profile", 
+      order_index: 0, 
+    },
+    {
+      key: "sign_out", 
+      label: "Sign out",
+      order_index: 2, 
+    },
+  ],
 };
