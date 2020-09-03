@@ -1,6 +1,6 @@
 $(document).ready(function () {
   const ACCOUNT_CHOOSER_DURATION = 180;
-  const { Helpers, Components, State } = FigureNav;
+  const { Helpers, Components } = FigureNav;
 
   const { renderSearchResult } = Helpers;
   const { Search, SideBar, AccountChooser, Notifications } = Components;
@@ -10,7 +10,6 @@ $(document).ready(function () {
    */
   $(window).mousedown(function (e) {
     Helpers.toggleSearchState();
-    // console.log(Search.ListItemLink);
     e.stopPropagation();
   });
 
