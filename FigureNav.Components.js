@@ -21,9 +21,10 @@ FigureNav.Components = {
      */
     PreviousButton: function (label) {
       const button = $("<span></span>");
-      const arrow = $(
-        '<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/> </svg>'
-      );
+      const arrow = 
+        $(`<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg"> 
+          <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/> 
+        </svg>`);
       arrow.addClass("nav-previous-arrow ");
       button.addClass("nav-prev-button");
       button.addClass("d-flex");
@@ -116,6 +117,7 @@ FigureNav.Components = {
         this.Container.append(title);
       }
 
+      // For Custom Content Pages separation:
       // if NewArray available for Content separation, then run this:
       const newArray = FigureNav.Helpers.contentSort(array);
       if (newArray.length === 2 && FigureNav.State.activeLink[1] === "pages") {
@@ -128,12 +130,14 @@ FigureNav.Components = {
           FigureNav.Components.SideBar.Container.append(navItem);
         })
         // Unavailable Content Title
-        const subDiv1 = FigureNav.Components.SideBar.SubDiv("inline-flex");
+        const subDiv1 = FigureNav.Components.SideBar.SubDiv("inline-flex unavailable");
         const subLabel = FigureNav.Components.SideBar.SubLabel("unavailable");
+        const infoButton = $(`<a></a>`).addClass("unavailable-info")
         const infoCon = FigureNav.Components.Notifications.InfoCon().removeClass("ml-2");
+        infoButton.append(infoCon);
         subDiv1
           .append(subLabel)
-          .append(infoCon);
+          .append(infoButton);
         FigureNav.Components.SideBar.Container.append(subDiv1);
         const subDiv2 = FigureNav.Components.SideBar.SubDiv();
         // Unavailable Content
@@ -146,13 +150,7 @@ FigureNav.Components = {
           navItem.find('.nav-link').attr('disabled', 'true');
           subDiv2.append(navItem);
         })
-        // Learn More Link
         FigureNav.Components.SideBar.Container.append(subDiv2);
-        const subDiv3 = FigureNav.Components.SideBar.SubDiv("learn-more");
-        const learnMore = FigureNav.Components.SideBar.Item("learn-more", "Learn More");
-        subDiv3.append(learnMore);
-        FigureNav.Components.SideBar.Container.append(subDiv3);
-      //else this
       } else {
         return array.map(function (link) {
           const { key, label } = link;
@@ -350,12 +348,12 @@ FigureNav.Components = {
       link.append(menuIcon)
       link.addClass(key);
       link.append(label);
-      link.click(function (e) {
-        if(FigureNav.State.activeLink.length > 0) FigureNav.State.activeLink = [];
-        FigureNav.State.activeLink.push(key);
-        console.log(FigureNav.State.activeLink);
-        FigureNav.Helpers.updateSidebar("forward");
-      });
+      // link.click(function (e) {
+      //   if(FigureNav.State.activeLink.length > 0) FigureNav.State.activeLink = [];
+      //   FigureNav.State.activeLink.push(key);
+      //   console.log(FigureNav.State.activeLink);
+      //   FigureNav.Helpers.updateSidebar("forward");
+      // });
       inline.append(link);
       return inline;
     },
@@ -390,12 +388,12 @@ FigureNav.Components = {
       const link = $('<a></a>');
       link.addClass(key);
       link.append(label);
-      link.click(function (e) {
-        if(FigureNav.State.activeLink.length > 0) FigureNav.State.activeLink = [];
-        FigureNav.State.activeLink.push(key);
-        console.log(FigureNav.State.activeLink);
-        FigureNav.Helpers.updateSidebar("forward");
-      });
+      // link.click(function (e) {
+      //   if(FigureNav.State.activeLink.length > 0) FigureNav.State.activeLink = [];
+      //   FigureNav.State.activeLink.push(key);
+      //   console.log(FigureNav.State.activeLink);
+      //   FigureNav.Helpers.updateSidebar("forward");
+      // });
       inline.append(link);
       return inline;
     },

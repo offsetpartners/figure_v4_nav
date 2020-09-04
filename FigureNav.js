@@ -13,6 +13,15 @@ $(document).ready(function () {
     e.stopPropagation();
   });
 
+  /**
+   * Click Away Listener - stop dropdown menu close on internal click
+   */
+  $('.dropdown-menu').click(function (e) {
+    console.log($(e.target));
+    if(e.target.tagName == "A") return;
+    e.stopPropagation();   
+  });
+
   // MARK: Search Bar
   Search.Bar.click(function (e) {
     Helpers.toggleSearchState(true);
