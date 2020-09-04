@@ -4,6 +4,7 @@
   height: 100%;
   display: flex;
   padding-right: 15px;
+  overflow: scroll;
 }
 
 .figure-row {

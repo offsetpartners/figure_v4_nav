@@ -61,164 +61,84 @@ const config = {
             {
               key: "content_about",
               label: "About",
-              children: [
-                { key: "overview", label: "Overview", },
-                { key: "listings", label: "Listings", },
-                { key: "settings", label: "Settings", },
-              ],
               isAvailable: true,
             },
             {
               key: "content_homepage",
               label: "Homepage",
-              children: [
-                { key: "overview", label: "Overview", },
-                { key: "listings", label: "Listings", },
-                { key: "settings", label: "Settings", },
-              ],
               isAvailable: true,
               order_index: 0,
             },
             {
               key: "content_club",
               label: "Club",
-              children: [
-                { key: "overview", label: "Overview", },
-                { key: "listings", label: "Listings", },
-                { key: "settings", label: "Settings", },
-              ],
               isAvailable: true,
             },
             {
               key: "content_concierge",
               label: "Concierge",
-              children: [
-                { key: "overview", label: "Overview", },
-                { key: "listings", label: "Listings", },
-                { key: "settings", label: "Settings", },
-              ],
               isAvailable: false,
             },
             {
               key: "content_people",
               label: "People",
-              children: [
-                { key: "overview", label: "Overview", },
-                { key: "listings", label: "Listings", },
-                { key: "settings", label: "Settings", },
-              ],
               isAvailable: true,
             },
             {
               key: "content_vineyards",
               label: "Vineyards",
-              children: [
-                { key: "overview", label: "Overview", },
-                { key: "listings", label: "Listings", },
-                { key: "settings", label: "Settings", },
-              ],
               isAvailable: true,
             },
             {
               key: "content_visit",
               label: "Visit",
-              children: [
-                { key: "overview", label: "Overview", },
-                { key: "listings", label: "Listings", },
-                { key: "settings", label: "Settings", },
-              ],
               isAvailable: true,
             },
             {
               key: "content_wine_making",
               label: "Wine Making",
-              children: [
-                { key: "overview", label: "Overview", },
-                { key: "listings", label: "Listings", },
-                { key: "settings", label: "Settings", },
-              ],
               isAvailable: true,
             },
             {
               key: "content_collection",
               label: "Collections",
-              children: [
-                { key: "overview", label: "Overview", },
-                { key: "listings", label: "Listings", },
-                { key: "settings", label: "Settings", },
-              ],
               order_index: 50,
               isAvailable: true,
             },
             {
               key: "content_wines",
               label: "Wines",
-              children: [
-                { key: "overview", label: "Overview", },
-                { key: "listings", label: "Listings", },
-                { key: "settings", label: "Settings", },
-              ],
               order_index: 51,
               isAvailable: true,
             },
             {
               key: "content_careers",
               label: "Careers",
-              children: [
-                { key: "overview", label: "Overview", },
-                { key: "listings", label: "Listings", },
-                { key: "settings", label: "Settings", },
-              ],
               isAvailable: false,
             },
             {
               key: "content_events",
               label: "Events",
-              children: [
-                { key: "overview", label: "Overview", },
-                { key: "listings", label: "Listings", },
-                { key: "settings", label: "Settings", },
-              ],
               isAvailable: false,
             },
             {
               key: "content_gallery",
               label: "Gallery",
-              children: [
-                { key: "overview", label: "Overview", },
-                { key: "listings", label: "Listings", },
-                { key: "settings", label: "Settings", },
-              ],
               isAvailable: false,
             },
             {
               key: "content_locations",
               label: "Locations",
-              children: [
-                { key: "overview", label: "Overview", },
-                { key: "listings", label: "Listings", },
-                { key: "settings", label: "Settings", },
-              ],
               isAvailable: false,
             },
             {
               key: "content_recipes",
               label: "Recipes",
-              children: [
-                { key: "overview", label: "Overview", },
-                { key: "listings", label: "Listings", },
-                { key: "settings", label: "Settings", },
-              ],
               isAvailable: false,
             },
             {
               key: "content_timeline",
               label: "Timeline",
-              children: [
-                { key: "overview", label: "Overview", },
-                { key: "listings", label: "Listings", },
-                { key: "settings", label: "Settings", },
-              ],
               isAvailable: false,
             },
           ],
@@ -241,42 +161,22 @@ const config = {
             {
               key: "content_trade",
               label: "Trade",
-              children: [
-                { key: "overview", label: "Overview", },
-                { key: "listings", label: "Listings", },
-                { key: "settings", label: "Settings", },
-              ],
               tags: ["trade"],
               order_index: 0,
             }, 
             {
               key: "resources_bottleshots",
               label: "Bottle Shots",
-              children: [
-                { key: "overview", label: "Overview", },
-                { key: "listings", label: "Listings", },
-                { key: "settings", label: "Settings", },
-              ],
               tags: ["trade", "bottleshots", "photos"],
             },
             {
               key: "resources_product_sheets",
               label: "Product Sheets",
-              children: [
-                { key: "overview", label: "Overview", },
-                { key: "listings", label: "Listings", },
-                { key: "settings", label: "Settings", },
-              ],
               tags: ["trade"],
             },
             {
               key: "resources_gallery_images",
               label: "Gallery Images",
-              children: [
-                { key: "overview", label: "Overview", },
-                { key: "listings", label: "Listings", },
-                { key: "settings", label: "Settings", },
-              ],
               tags: ["trade", "photos"],
             },
           ],
@@ -323,6 +223,38 @@ const config = {
       id: 5,
       name: "Formatted Sidebar with more custom styles to reflect Content designs. Also, revised top-nav with new icons and simplified user icon.",
       date: "9/2/2020",
+    },
+  ],
+  help_doc: [
+    {
+      key: "documentation", 
+      label: "Documentation",
+      order_index: 0, 
+    },
+    {
+      key: "support", 
+      label: "Support",
+      order_index: 1, 
+    },
+  ],
+  user_info: [
+    {
+      key: "user_details",
+      label: "User Details",
+      details: {
+        first_name: "Jane",
+        last_name: "Richards",
+        position: "Sale Manager",
+        email: "jane.richards@josephphelpsvineyards.com",
+      },
+    },    
+    {
+      key: "profile", 
+      label: "Profile", 
+    },
+    {
+      key: "sign_out", 
+      label: "Sign out", 
     },
   ],
 };
