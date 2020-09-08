@@ -25,13 +25,22 @@
   height: 22px;
   width: 22px;
   margin-bottom: -6px;
+  color: var(--nav-links-color);
 }
 
 .account-details-links .dashboard-icons path {
   stroke: var(--nav-links-color);
   transition: stroke var(--nav-transition-time) ease-in-out;
 }
+.account-details-links .dashboard-icons circle {
+  stroke: var(--nav-links-color);
+  transition: stroke var(--nav-transition-time) ease-in-out;
+}
 .account-details-links .dashboard-icons:hover path {
+  stroke: var(--nav-color);
+  transition: stroke var(--nav-transition-time) ease-in-out;
+}
+.account-details-links .dashboard-icons:hover circle {
   stroke: var(--nav-color);
   transition: stroke var(--nav-transition-time) ease-in-out;
 }
@@ -53,16 +62,6 @@
   transition: color var(--nav-transition-time) ease-in-out;
   text-decoration: none;
   cursor: pointer;
-}
-#figure-nav-profile-details {
-  display: flex;
-  align-self: center;
-  padding: 0 12px;
-}
-.figure-nav-profile-dropdown {
-  /* padding-left: 10px; */
-  display: inline-flex;
-  /* border-left: 1px solid var(--nav-links-color); */
 }
 
 /*  */
@@ -92,6 +91,9 @@
 }
 .info-con-path {
   stroke: var(--nav-dropdown-active-bgColor);
+}
+.info-con-alert {
+  color: var(--nav-dropdown-active-bgColor);
 }
 .notification-date {
   margin-bottom: 0;
@@ -182,6 +184,24 @@
 }
 
 /* User Details */
+#figure-nav-profile-details {
+  display: flex;
+  align-self: center;
+  padding: 0 12px;
+}
+#figure-nav-profile-details:hover {
+  cursor: pointer;
+}
+#figure-nav-profile-details circle {
+  transition: fill var(--nav-transition-time) ease-in-out;
+}
+#figure-nav-profile-details:hover circle {
+  fill: var(--nav-dropdown-active-bgColor);
+  transition: fill var(--nav-transition-time) ease-in-out;
+}
+.figure-nav-profile-dropdown {
+  display: inline-flex;
+}
 .figure-nav-profile-dropdown .dropdown-menu-arrow {
   margin-right: 22px;
   margin-left: 22px;

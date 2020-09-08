@@ -224,6 +224,11 @@ const config = {
       name: "Formatted Sidebar with more custom styles to reflect Content designs. Also, revised top-nav with new icons and simplified user icon.",
       date: "9/2/2020",
     },
+    {
+      id: 6,
+      name: "Replacing iconography to match feather icons.",
+      date: "9/8/2020",
+    },
   ],
   help_doc: [
     {

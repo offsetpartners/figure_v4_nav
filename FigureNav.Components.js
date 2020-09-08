@@ -252,10 +252,35 @@ FigureNav.Components = {
      */
     InfoCon: function (alert = "") {
       return (
-        $(`<svg class="info-con" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path class="${alert}" d="M8.00002 15.3333C12.0501 15.3333 15.3334 12.05 15.3334 7.99996C15.3334 3.94987 12.0501 0.666626 8.00002 0.666626C3.94993 0.666626 0.666687 3.94987 0.666687 7.99996C0.666687 12.05 3.94993 15.3333 8.00002 15.3333Z" stroke="#4F5268" stroke-miterlimit="10" stroke-linecap="square"/>
-          <path class="${alert}" d="M7.99994 8V11.5" stroke="#4F5268" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-          <path class="${alert}" d="M7.99994 5L7.99994 6" stroke="#4F5268" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        $(`<svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          width="16" 
+          height="16" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="currentColor" 
+          stroke-width="2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          class="feather feather-alert-circle info-con ${alert}"
+        >
+          <circle 
+            cx="12" 
+            cy="12" 
+            r="10"
+          ></circle>
+          <line 
+            x1="12" 
+            y1="8" 
+            x2="12" 
+            y2="12"
+          ></line>
+          <line 
+            x1="12" 
+            y1="16" 
+            x2="12.01" 
+            y2="16"
+          ></line>
         </svg>`)
       );
     },
@@ -268,7 +293,7 @@ FigureNav.Components = {
       const inline = $(`<div></div>`);
       inline.addClass('notification-inline');
       let infoConAlert = "";
-      this.DayCheck(date) ? infoConAlert = "" : infoConAlert = "info-con-path";
+      this.DayCheck(date) ? infoConAlert = "" : infoConAlert = "info-con-alert";
       const infoCon = this.InfoCon(infoConAlert);
       const months = ["Jan","Feb","March","April","May","June","July","Aug","Sept","Oct","Nov","Dec"];
       const thisDate = new Date(date);
@@ -290,17 +315,32 @@ FigureNav.Components = {
      * @param {String} color - css color
      */
     HelpIcon: function (size) {
-      return $(`<svg class="dropdown-icons dropdown-help-icon mr-2" width="${size}" height="${size}" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g clip-path="url(#clip0)">
-        <path d="M10.6219 19.1666C15.6845 19.1666 19.7885 15.0625 19.7885 9.99992C19.7885 4.93731 15.6845 0.833252 10.6219 0.833252C5.55926 0.833252 1.4552 4.93731 1.4552 9.99992C1.4552 15.0625 5.55926 19.1666 10.6219 19.1666Z" stroke="#2a2f56" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="square"/>
-        <path d="M8.2218 7.60261C8.2218 4.84361 12.8202 4.84356 12.8202 8.17736C12.8202 8.98209 12.4057 9.75844 11.4407 10.3616C10.4756 10.9648 10.6 11.7668 10.6 11.7668" stroke="#2a2f56" stroke-width="1.5" stroke-linecap="round"/>
-        <circle cx="10.5219" cy="14.5669" r="1" fill="#2a2f56"/>
-        </g>
-        <defs>
-        <clipPath id="clip0">
-        <rect width="20" height="20" fill="white" transform="translate(0.621826)"/>
-        </clipPath>
-        </defs>
+      return $(`<svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        width="${size}" 
+        height="${size}" 
+        viewBox="0 0 24 24" 
+        fill="none" 
+        stroke="currentColor" 
+        stroke-width="2" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" 
+        class="feather feather-help-circle dropdown-icons dropdown-help-icon mr-2"
+      >
+        <circle 
+          cx="12" 
+          cy="12" 
+          r="10"
+        ></circle>
+        <path 
+          d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"
+        ></path>
+        <line 
+          x1="12" 
+          y1="17" 
+          x2="12.01" 
+          y2="17"
+        ></line>
       </svg>`)
     },
     /**
@@ -308,10 +348,24 @@ FigureNav.Components = {
      * @param {String} color - css color
      */
     DocumentIcon: function (size) { 
-      return $(`<svg class="dropdown-icons dropdown-help-icon mr-2" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16 6H8V11H16V6Z" stroke="#2a2f56" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M21 18V1H5C3.895 1 3 1.895 3 3V20.5" stroke="#2a2f56" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M5.5 18H21V23H5.5C4.119 23 3 21.881 3 20.5C3 19.119 4.119 18 5.5 18Z" stroke="#2a2f56" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+      return $(`<svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        width="${size}" 
+        height="${size}" 
+        viewBox="0 0 24 24" 
+        fill="none" 
+        stroke="currentColor" 
+        stroke-width="2" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" 
+        class="feather feather-book-open dropdown-icons dropdown-help-icon mr-2"
+      >
+        <path 
+          d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"
+        ></path>
+        <path 
+          d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"
+        ></path>
       </svg>`)
     },
     Dropdown: $(".figure-nav-help-dropdown"),
