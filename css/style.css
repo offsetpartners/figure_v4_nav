@@ -35,8 +35,8 @@
 body {
   width: 100vw;
   overflow-x: hidden;
-  background-color: var(--nav-bgColor);
   position: relative;
+  background-color: var(--nav-bgColor);
 }
 
 .figure-nav {

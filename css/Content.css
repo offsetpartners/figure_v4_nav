@@ -3,7 +3,7 @@
   width: 100%;
   height: 100%;
   display: flex;
-  overflow: scroll;
+  overflow: auto;
   padding-right: 15px;
 }
 
@@ -14,4 +14,9 @@
 .figure-card {
   width: 100%;
   height: 100%;
+}
+
+#figure-content .ant-layout-content {
+  padding: 20px !important;
+  max-width: unset !important;
 }

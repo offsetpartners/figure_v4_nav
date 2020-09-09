@@ -13,10 +13,7 @@ $(document).ready(function () {
     // console.log(State.activeLink);
     if ($(e.target).closest("li").hasClass("dashboard-search-list-item")) {
       Parts.FigureContent.contents().empty();
-      if (
-        $(e.target).closest("li").find("a").hasClass("see-all") ||
-        $(e.target).closest("li").find("a").hasClass("advanced-link")
-      ) {
+      if ($(e.target).closest("li").find("a").hasClass("see-all")) {
         // console.log($(e.target).closest('li').find('a'))
         Search.Bar.val($(e.target).closest("li").find("a").text());
         const card = Parts.Col("full").append(Parts.Card);
