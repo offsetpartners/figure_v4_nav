@@ -98,6 +98,7 @@ $(document).ready(function () {
     config.user_info.forEach(function (detail) {
       if (detail.key === "user_details") {
         const d = detail.details;
+        Components.Profile.Icon.append(`${d.first_name[0]}${d.last_name[0]}`);
         const title = Profile.UserDetails(
           d.first_name,
           d.last_name,
