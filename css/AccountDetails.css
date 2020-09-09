@@ -100,18 +100,16 @@
 
 /* Notifications Dropdown Menu */
 .account-details .dropdown-menu {
-  width: 350px;
   padding: 0;
-  max-height: 215px;
+  width: 350px;
   z-index: 999;
   margin-top: 15px;
+  max-height: 215px;
 }
 .account-details .figure-nav-help-dropdown .dropdown-menu {
   width: 225px;
 }
-/* .figure-nav-notifications-dropdown .dropdown-menu.show {
-  margin-left: 40px;
-} */
+
 .figure-nav-notifications-dropdown .dropdown-menu .figure-nav-dropdown-render {
   overflow: scroll;
   max-height: 170px;

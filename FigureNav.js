@@ -50,7 +50,7 @@ $(document).ready(function () {
   });
 
   // MARK: Account Chooser
-  AccountChooser.Button.prepend(config.company_name);
+  AccountChooser.Button.prepend(`<p>${config.company_name}</p>`);
   if (config.accounts && Array.isArray(config.accounts)) {
     config.accounts.forEach(function (account) {
       const { id, name } = account;
