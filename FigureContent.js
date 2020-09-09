@@ -1,6 +1,6 @@
 $(document).ready(function () {
   const { Base } = FigureContent;
-  const { Components, State } = FigureNav;
+  const { Components } = FigureNav;
 
   const { Parts } = Base;
   const { Search } = Components;

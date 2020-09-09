@@ -91,7 +91,7 @@ FigureNav.Helpers = {
     };
   },
   /**
-   * navItem interjecting custom formatting 
+   * navItem interjecting custom formatting
    * @param {Object[]} link - config destination.
    * @param {String} link[].key - config key.
    * @param {String} link[].label - config label.
@@ -104,73 +104,62 @@ FigureNav.Helpers = {
         if (link.key === "analytics") {
           navItem.css("margin-bottom", "20px");
         }
-      // } else if (FigureNav.State.activeLink[1] == "pages") {
-        // if (link.isAvailable) {
-        //   console.log(link);
-        // }
       } else if (FigureNav.State.activeLink.length === 2) {
-        // console.log(link.key)
         if (link.key === "content_trade") {
           navItem.css("margin-bottom", "20px");
         }
       }
     }
   },
-    /**
-   * Sorts Content array based on order preference and availability (isAvailable) 
-   * @param {Array.<{key: String, label: String, children: []|null, available: Boolean, order: Number}>y} array
+  /**
+   * @description Move Element given its current index and its new index. Reference [here](https://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another)
+   * @param {Array} arr
+   * @param {Number} currentIndex Element to move's index
+   * @param {Number} newIndex New position for Element
+   **/
+  arrayMove: function (arr, currentIndex, newIndex) {
+    if (newIndex >= arr.length) {
+      var k = newIndex - arr.length + 1;
+      while (k--) {
+        arr.push(undefined);
+      }
+    }
+    arr.splice(newIndex, 0, arr.splice(currentIndex, 1)[0]);
+    return arr; // for testing
+  },
+  /**
+   * Sorts Content array based on order preference and availability (isAvailable)
+   * @param {Array.<{key: String, label: String, children: []|null, isAvailable: Boolean, order: Number}>} array
+   *
+   * @return {{available: Array, unavailable: Array}}
    */
   contentSort: function (array) {
-    /** Sorting function if order is preset **/
-    function array_move(arr, old_index, new_index) {
-      if (new_index >= arr.length) {
-        var k = new_index - arr.length + 1;
-        while (k--) {
-          arr.push(undefined);
-        }
-      }
-      arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
-      return arr; // for testing
-    };
-    /** Sorts alphabetically by label to start **/
-    array.sort(function(a, b){
-      if(a.label < b.label) { return -1; }
-      if(a.label > b.label) { return 1; }
-      return 0;
-    })
-    /** Checks if array has any calls for sorting via order_index **/
-    arrayEnd = [];
-    array.forEach(item => {
-      if (item.order_index >= 0) {
-        if(item.order_index > array.length - 1) {
-          arrayEnd.push(item);
-        } else {
-          let order = array.length - 1;
-          item.order_index > (array.length - 1) ? order = array.length - 1 : order = item.order_index;
-          array_move(array, array.indexOf(item), order);
-        }
-      }
+    // (ASC) alphabetically sort Array via label field
+    const alphabeticallySort = array.sort(function (a, b) {
+      return a.label < b.label ? -1 : 1;
     });
-    array.forEach(item => {
-      if (item.order_index >= 0) {
-        let order = array.length - 1;
-        item.order_index > (array.length - 1) ? order = array.length - 1 : order = item.order_index;
-        array_move(array, array.indexOf(item), order);
-      }
+
+    // Sort via Order Index when available
+    const orderIndexSort = alphabeticallySort;
+    orderIndexSort.forEach((item, index) => {
+      if (!item.order_index) return;
+
+      const order =
+        item.order_index > orderIndexSort.length - 1
+          ? orderIndexSort.length - 1
+          : item.order_index;
+      this.arrayMove(orderIndexSort, index, order);
     });
     /** Checks if array key is an available product and separates into 2 arrays if so **/
-    let arrayAvailable = [];
-    const arrayNotAvailable = [];
-    const available = (avail) => avail.isAvailable;
-    // console.log(array.some(available));
-    if (array.some(available)) {
-      array.forEach(e => {
-        e.isAvailable ? arrayAvailable.push(e) : arrayNotAvailable.push(e);
-      })
-    }
-    let newArray = []
-    arrayNotAvailable.length > 0 ? newArray = [arrayAvailable, arrayNotAvailable] : newArray = [arrayAvailable];
-    return newArray;
+    const arrayAvailable = orderIndexSort.filter(function (item) {
+      console.log(item);
+      return !item.isAvailable;
+    });
+    const arrayNotAvailable = orderIndexSort.filter(function (item) {
+      return item.isAvailable;
+    });
+
+    return { available: arrayAvailable, unavailable: arrayNotAvailable };
   },
   /**
    * Toggle Search Component State
@@ -293,11 +282,13 @@ FigureNav.Helpers = {
         if (i > 0) costs[s2.length] = lastValue;
       }
       return costs[s2.length];
-    };
+    }
 
     if (results.length > 0) {
-      FigureNav.Components.Search.List.prepend(FigureNav.Components.Search.SeeAll(input));
-    };
+      FigureNav.Components.Search.List.prepend(
+        FigureNav.Components.Search.SeeAll(input)
+      );
+    }
 
     results.forEach(function (tableData) {
       const row = FigureNav.Components.Search.ListItem(

@@ -3,7 +3,8 @@ $(document).ready(function () {
   const { Helpers, Components } = FigureNav;
 
   const { renderSearchResult } = Helpers;
-  const { SideBar, Search, AccountChooser, Notifications, Help, Profile } = Components;
+  const { Search, AccountChooser, Notifications, Help, Profile } = Components;
+
 
   /**
    * Click Away Listener
@@ -16,10 +17,10 @@ $(document).ready(function () {
   /**
    * Click Away Listener - stop dropdown menu close on internal click
    */
-  $('.dropdown-menu').click(function (e) {
+  $(".dropdown-menu").click(function (e) {
     console.log($(e.target));
-    if(e.target.tagName == "A") return;
-    e.stopPropagation();   
+    if (e.target.tagName == "A") return;
+    e.stopPropagation();
   });
 
   // MARK: Search Bar
@@ -42,8 +43,8 @@ $(document).ready(function () {
     e.stopPropagation();
   });
 
-  // Changes search icon to dark color when search bar is focused 
-  // with white background 
+  // Changes search icon to dark color when search bar is focused
+  // with white background
   Search.Bar.mousedown(function (e) {
     if (!Search.Bar.is(":focus")) Search.Icon.addClass("dark-icon");
     e.stopPropagation();
@@ -59,13 +60,15 @@ $(document).ready(function () {
       AccountChooser.DropdownMenu.append(dropdownItem);
     });
   }
-  
+
   // MARK: Notifications
   if (config.notifications_list && Array.isArray(config.notifications_list)) {
     const title = Notifications.Title("Notifications");
-    Notifications.DropdownMenu.prepend(title)
+    Notifications.DropdownMenu.prepend(title);
     var alertNoteCount = 0;
-    const sortedNotifications = config.notifications_list.slice().sort((a, b) => (new Date(b.date)) - (new Date(a.date)));
+    const sortedNotifications = config.notifications_list
+      .slice()
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
     sortedNotifications.forEach(function (note) {
       const { id, name, date } = note;
       const dropdownItem = Notifications.DropdownItem(id, name, date);
@@ -77,32 +80,37 @@ $(document).ready(function () {
 
   // MARK: Help
   if (config.help_doc && Array.isArray(config.help_doc)) {
-    const title = Help.Title("Help");        
-    
+    const title = Help.Title("Help");
+
     Help.DropdownMenu.append(title);
-    
+
     config.help_doc.forEach(function (help) {
       const { key, label, order_index } = help;
       const dropdownItem = Help.DropdownItem(key, label);
 
       Help.DropdownMenu.append(dropdownItem);
     });
-  };
+  }
 
   // MARK: Profile
   if (config.user_info && Array.isArray(config.user_info)) {
     config.user_info.forEach(function (detail) {
       if (detail.key === "user_details") {
         const d = detail.details;
-        const title = Profile.UserDetails(d.first_name, d.last_name, d.email, d.position); 
+        const title = Profile.UserDetails(
+          d.first_name,
+          d.last_name,
+          d.email,
+          d.position
+        );
         Profile.DropdownMenu.append(title);
-      } 
-    })
+      }
+    });
     config.user_info.forEach(function (detail) {
       if (detail.key !== "user_details") {
         const { key, label, order_index } = detail;
         const dropdownItem = Profile.DropdownItem(key, label);
-        
+
         Profile.DropdownMenu.append(dropdownItem);
       }
     });
@@ -110,21 +118,16 @@ $(document).ready(function () {
 
   // Handle Dropdown interactions
   const DropdownHandlers = [AccountChooser, Notifications, Help, Profile];
-  DropdownHandlers.forEach(Handler => {
+  DropdownHandlers.forEach((Handler) => {
     Handler.Dropdown.on("show.bs.dropdown", function (e) {
       Handler.DropdownMenu.slideDown(ACCOUNT_CHOOSER_DURATION);
     });
-  
+
     Handler.Dropdown.on("hide.bs.dropdown", function (e) {
       Handler.DropdownMenu.slideUp(ACCOUNT_CHOOSER_DURATION);
     });
   });
 
   // MARK: Links
-  if (config.links && Array.isArray(config.links)) {
-    const { links } = config;
-
-    return SideBar.Body(links);
-  }
+  Helpers.updateSidebar();
 });
-
