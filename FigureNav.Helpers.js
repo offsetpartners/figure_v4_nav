@@ -162,13 +162,14 @@ FigureNav.Helpers = {
    * @return {{available: Array, unavailable: Array}}
    */
   contentSort: function (array) {
+    // First clone the array then
     // (ASC) alphabetically sort Array via label field
-    const alphabeticallySort = array.sort(function (a, b) {
+    const alphabeticallySort = [].concat(array).sort(function (a, b) {
       return a.label < b.label ? -1 : 1;
     });
 
     // Sort via Order Index when available
-    const orderIndexSort = alphabeticallySort;
+    const orderIndexSort = [].concat(alphabeticallySort);
     orderIndexSort.forEach((item, index) => {
       if (!item.order_index) return;
 
@@ -180,13 +181,11 @@ FigureNav.Helpers = {
     });
     /** Checks if array key is an available product and separates into 2 arrays if so **/
     const arrayAvailable = orderIndexSort.filter(function (item) {
-      console.log(item);
-      return !item.isAvailable;
+      return typeof item.isAvailable === "undefined" || item.isAvailable;
     });
     const arrayNotAvailable = orderIndexSort.filter(function (item) {
-      return item.isAvailable;
+      return typeof item.isAvailable !== "undefined" && !item.isAvailable;
     });
-
     return { available: arrayAvailable, unavailable: arrayNotAvailable };
   },
   /**
