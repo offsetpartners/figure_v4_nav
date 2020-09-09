@@ -5,6 +5,7 @@ $(document).ready(function () {
   const { renderSearchResult } = Helpers;
   const { Search, AccountChooser, Notifications, Help, Profile } = Components;
 
+  Helpers.readURL();
 
   /**
    * Click Away Listener

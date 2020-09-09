@@ -19,6 +19,17 @@ FigureNav.Helpers = {
     return "/" + FigureNav.State.activeLink.join("/");
   },
   /**
+   * @description Read window URL and update activeLink State accordingly
+   */
+  readURL: function () {
+    const { State } = FigureNav;
+    const splitStr = window.location.pathname.split("/");
+    const filtered = splitStr.filter(function (v, i) {
+      return i === splitStr.length - 1;
+    });
+    State.activeLink = filtered;
+  },
+  /**
    * @description Updates the Nav depending on the local state
    * @param {("forward"|"backward")} direction
    */
@@ -27,6 +38,11 @@ FigureNav.Helpers = {
       config.links,
       FigureNav.State.activeLink
     );
+
+    // If Key wasn't in config.links then just render default state
+    if (prevItem && JSON.stringify(children) === JSON.stringify(config.links)) {
+      return this.resetSidebar();
+    }
 
     const Component = FigureNav.Components.SideBar.Container;
     // If it has children then
@@ -46,6 +62,18 @@ FigureNav.Helpers = {
     // Reset
     FigureNav.State.activeLink = [];
     FigureNav.Components.SideBar.Body(config.links);
+  },
+  resetSidebar: function () {
+    const { Item, Container } = FigureNav.Components.SideBar;
+    FigureNav.State.activeLink = [];
+    Container.css({ marginTop: "92px" });
+    return config.links.map(function (link) {
+      const { key, label } = link;
+
+      const navItem = Item(key, label);
+      FigureNav.Helpers.navItemFormatting(link, navItem);
+      Container.append(navItem);
+    });
   },
   /**
    * @description Recursive function that finds the current key and returns relevant
