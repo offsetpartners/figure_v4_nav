@@ -21,6 +21,7 @@ header.figure-nav-container {
 
 .figure-nav #figure-nav-account-chooser p {
   width: 100%;
+  margin: 0px;
   text-align: left;
   white-space: normal;
 }
