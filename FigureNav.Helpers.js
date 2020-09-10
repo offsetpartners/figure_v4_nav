@@ -168,8 +168,31 @@ FigureNav.Helpers = {
       return a.label < b.label ? -1 : 1;
     });
 
+    // Get all Items with order_index
+    // Then sort them
+    const orderIndexArray = []
+      .concat(alphabeticallySort)
+      .filter(function (item) {
+        return typeof item.order_index === "number";
+      })
+      .sort(function (a, b) {
+        return a.order_index < b.order_index ? -1 : 1;
+      });
+
+    // Combine sorted orderIndex array and alphabeticallySorted array
+    const combinedArray = [].concat(orderIndexArray).concat(alphabeticallySort);
+
+    // Remove duplicate Objects from array
+    const uniqueArray = combinedArray.filter(function (e, i) {
+      return (
+        combinedArray.findIndex(function (a) {
+          return a.key === e.key;
+        }) === i
+      );
+    });
+
     // Sort via Order Index when available
-    const orderIndexSort = [].concat(alphabeticallySort);
+    const orderIndexSort = [].concat(uniqueArray);
     orderIndexSort.forEach((item, index) => {
       if (!item.order_index) return;
 
