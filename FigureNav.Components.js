@@ -150,7 +150,7 @@ FigureNav.Components = {
 
         // Unavailable Content Title
         const unavailableDiv = this.SubDiv("inline-flex unavailable");
-        const subLabel = this.SubLabel("unavailable");
+        const subLabel = this.SubLabel("Add-Ons");
         const infoButton = $(`<a></a>`).addClass("unavailable-info");
         const infoCon = FigureNav.Components.Notifications.InfoCon().removeClass(
           "ml-2"
@@ -420,12 +420,6 @@ FigureNav.Components = {
       const link = $("<a></a>");
       link.addClass(key);
       link.append(label);
-      // link.click(function (e) {
-      //   if(FigureNav.State.activeLink.length > 0) FigureNav.State.activeLink = [];
-      //   FigureNav.State.activeLink.push(key);
-      //   console.log(FigureNav.State.activeLink);
-      //   FigureNav.Helpers.updateSidebar("forward");
-      // });
       inline.append(link);
       return inline;
     },

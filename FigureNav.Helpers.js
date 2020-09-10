@@ -126,17 +126,10 @@ FigureNav.Helpers = {
    * @param {callback} navItem
    */
   navItemFormatting: function (link, navItem) {
-    if (FigureNav.State.activeLink[0] == "content") {
-      if (FigureNav.State.activeLink.length === 1) {
-        // console.log(link.key)
-        if (link.key === "analytics") {
-          navItem.css("margin-bottom", "20px");
-        }
-      } else if (FigureNav.State.activeLink.length === 2) {
-        if (link.key === "content_trade") {
-          navItem.css("margin-bottom", "20px");
-        }
-      }
+    if (link.key === "pages") {
+      navItem.css({ marginTop: "20px" });
+    } else if (link.key === "resources_bottleshots") {
+      navItem.css({ marginTop: "20px" });
     }
   },
   /**
@@ -202,7 +195,7 @@ FigureNav.Helpers = {
           : item.order_index;
       this.arrayMove(orderIndexSort, index, order);
     });
-    /** Checks if array key is an available product and separates into 2 arrays if so **/
+
     const arrayAvailable = orderIndexSort.filter(function (item) {
       return typeof item.isAvailable === "undefined" || item.isAvailable;
     });
